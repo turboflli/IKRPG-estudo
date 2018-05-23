@@ -1,13 +1,19 @@
 <h2>My Lifes</h2>
-<ul class="heroes">
-  <li *ngFor="let life of lifes">
+<ul class="lifes">
+  <li *ngFor="let life of lifes" (click)="onSelect(life)">
   	<div><span>Tipo: </span>{{life.type | uppercase }}</div>
 	<div><span>Total: </span>{{life.value}}</div>
-	<div>
+	<!--<div>
 	    <label>Novo valor:
 	      <input [(ngModel)]="life.value" placeholder="quantidade">
 	    </label>
-	</div>
+	</div> -->
   </li>
 </ul>
-
+<div *ngIf="selectedLife">
+	<div><span>Tipo: </span>{{selectedLife.type | uppercase }}</div>
+	<div><span>Total: </span>{{selectedLife.value}}</div>
+    <label>Novo valor:
+      <input [(ngModel)]="selectedLife.value" placeholder="quantidade">
+    </label>
+</div> 

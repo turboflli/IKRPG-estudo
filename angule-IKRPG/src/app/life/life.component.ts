@@ -13,6 +13,13 @@ lifes=LIFES;
 		type:'vitalidade',
 		value:'8'
 	}*/
+
+
+  selectedLife: Life;
+
+  onSelect(life: Life): void {
+    this.selectedLife = life;
+  }
   constructor() { }
 
   ngOnInit() {
