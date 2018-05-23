@@ -1,0 +1,7 @@
+<div *ngIf="life">
+	<div><span>Tipo: </span>{{life.type | uppercase }}</div>
+	<div><span>Total: </span>{{life.value}}</div>
+    <label>Novo valor:
+      <input [(ngModel)]="life.value" placeholder="quantidade">
+    </label>
+</div> 

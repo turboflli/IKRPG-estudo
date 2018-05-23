@@ -1,4 +1,4 @@
-export class life:{
+export class life : {
 	type: String;
 	value: String;
-}
+} 
