@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LIFES } from '../mock-lifes';
 
 @Component({
   selector: 'app-life',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./life.component.css']
 })
 export class LifeComponent implements OnInit {
-	life: Life = {
+
+lifes=LIFES;
+	/*life: Life = {
 		type:'vitalidade',
 		value:'8'
-	}
+	}*/
   constructor() { }
 
   ngOnInit() {
