@@ -27,4 +27,8 @@ export class LifeDetailComponent implements OnInit {
 		.subscribe(life => this.life = life);
   }
 
+  goBack(): void {
+	  this.location.back();
+	}
+
 }

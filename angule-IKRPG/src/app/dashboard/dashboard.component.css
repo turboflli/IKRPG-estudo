@@ -23,6 +23,7 @@ h4 {
 }
 .grid {
   margin: 0;
+  height:100px;
 }
 .col-1-4 {
   width: 15%;
@@ -57,6 +58,6 @@ h4 {
     margin: 0;
   }
   .module {
-    min-width: 60px;
+    min-width: 120px;
   }
 }
