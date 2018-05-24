@@ -1,0 +1,9 @@
+<h3>Top Mobs</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let life of lifes" class="col-1-4"
+   routerLink="/detail/{{life.name}}">
+    <div class="module life">
+      <h4>{{life.name}}</h4>
+    </div>
+  </a>
+</div>

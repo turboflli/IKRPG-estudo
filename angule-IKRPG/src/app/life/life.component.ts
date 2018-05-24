@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LIFES } from '../mock-lifes';
-
+import { LifeService } from '../life.service';
+import { Life } from '../Life';
 @Component({
   selector: 'app-life',
   templateUrl: './life.component.html',
@@ -8,21 +8,21 @@ import { LIFES } from '../mock-lifes';
 })
 export class LifeComponent implements OnInit {
 
-lifes=LIFES;
-	/*life: Life = {
-		type:'vitalidade',
-		value:'8'
-	}*/
+lifes:Life[];
+	
 
-
-  selectedLife: Life;
-
-  onSelect(life: Life): void {
-    this.selectedLife = life;
+getLifes(): void {
+  this.lifeService.getLifes()
+  .subscribe(lifes => this.lifes = lifes);
+  
+}
+  
+  constructor(private lifeService: LifeService) { 
+	
   }
-  constructor() { }
 
   ngOnInit() {
+	  this.getLifes();
   }
 
 }
