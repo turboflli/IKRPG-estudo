@@ -1,12 +1,17 @@
-<div><h2>My Lifes</h2>
+<div ><h2>My Lifes</h2>
 <ul class="lifes">
-  <li *ngFor="let life of lifes" >
+  <li *ngFor="let life of lifes;let i = index" >
   <!--[class.selected]="life === selectedLife" (click)="onSelect(life)"-->
   	
 	<a routerLink="/detail/{{life.name}}">
+	<span class="badge">{{i}}</span>
+	<div class="group">
+	
 	<span>Nome: </span>{{life.name }}
 	<span>Tipo: </span>{{life.type  }}
 	<span>Total: </span>{{life.value}}
+	
+	</div>
 	</a>
 	
 	<!--<div>
