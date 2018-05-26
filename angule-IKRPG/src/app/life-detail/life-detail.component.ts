@@ -9,6 +9,7 @@ import { LifeService } from '../life.service';
   templateUrl: './life-detail.component.html',
   styleUrls: ['./life-detail.component.css']
 })
+
 export class LifeDetailComponent implements OnInit {
 @Input() life: Life;
   constructor( 
@@ -34,5 +35,32 @@ export class LifeDetailComponent implements OnInit {
   goBack(): void {
 	  this.location.back();
 	}
-
+	setdefault(): void{
+		if(this.life.type=='vitalidade'){
+			this.life.value='0';
+		}else if(this.life.type=='espiral'){
+			this.life.value='0,0,0';
+		}else{
+			this.life.value='0,0,0,0,0,0';
+		}
+	}
+	numerica(start:number, max:number): number[]{
+		let resp=new Array();
+		while(start<max){
+			resp.push(start);
+			start++;
+		}
+		return resp;
+		//return new Array(max);
+	}
+	vitalityup(up:boolean): void{
+		let novo=0;
+		if(up){
+			novo=(+this.life.value)+1;
+		}else{
+			novo=(+this.life.value)-1;
+		}
+		if(novo<0){novo=1};
+		this.life.value=String(novo);
+	}
 }
