@@ -1,19 +1,36 @@
+<div>
+  <label>Life nome:
+    <input #lifeName />
+  </label>
+  <label>Life tipo:
+    <input #lifeType />
+  </label>
+  <label>Life valor:
+    <input #lifeValue />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(lifeName.value,lifeType.value,lifeValue.value); 
+  lifeName.value='';lifeType.value='';lifeValue.value=''">
+    add
+  </button>
+</div>
 <div ><h2>My Lifes</h2>
 <ul class="lifes">
   <li *ngFor="let life of lifes;let i = index" >
   <!--[class.selected]="life === selectedLife" (click)="onSelect(life)"-->
   	
-	<a routerLink="/detail/{{life.name}}">
-	<span class="badge">{{i}}</span>
-	<div class="group">
+	<a routerLink="/detail/{{life.id}}">
+	<span class="badge">{{life.id}}</span>
 	
-	<span>Nome: </span>{{life.name }}
-	<span>Tipo: </span>{{life.type  }}
-	<span>Total: </span>{{life.value}}
+	{{life.name }}
 	
-	</div>
+	<!--Tipo: {{life.type  }}
+	Total: {{life.value}}-->
+	
+
 	</a>
-	
+	<button class="delete" title="delete life"
+	(click)="delete(life)">x</button>
 	<!--<div>
 	    <label>Novo valor:
 	      <input [(ngModel)]="life.value" placeholder="quantidade">

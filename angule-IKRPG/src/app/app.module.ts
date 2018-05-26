@@ -7,6 +7,10 @@ import { LifeDetailComponent } from './life-detail/life-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
+import { LifeSearchComponent } from './life-search/life-search.component'
 
 @NgModule({
   declarations: [
@@ -14,12 +18,21 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LifeComponent,
     LifeDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    LifeSearchComponent
   ],
   imports: [
 	  BrowserModule,
 	  FormsModule,
-	  AppRoutingModule
+	  AppRoutingModule,
+	  HttpClientModule,
+
+// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+// and returns simulated server responses.
+// Remove it when a real server is ready to receive requests.
+HttpClientInMemoryWebApiModule.forRoot(
+  InMemoryDataService, { dataEncapsulation: false }
+)
 	],
   providers: [],
   bootstrap: [AppComponent]

@@ -22,11 +22,15 @@ export class LifeDetailComponent implements OnInit {
   }
   
   getLife(): void {
-	  const name = this.route.snapshot.paramMap.get('name'); // put (+) in front of this to converto to number
-	  this.lifeService.getLife(name)
+	  const id = +this.route.snapshot.paramMap.get('id'); // put (+) in front of this to converto to number
+	  this.lifeService.getLife(id)
 		.subscribe(life => this.life = life);
   }
-
+   save(): void {
+	   this.lifeService.updateLife(this.life)
+	   .subscribe(() => this.goBack());
+   }
+  
   goBack(): void {
 	  this.location.back();
 	}

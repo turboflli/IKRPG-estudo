@@ -1,10 +1,33 @@
 <div *ngIf="life">
-	<div><span>{{life.name | uppercase }} </span></div>
+	<!--div><span>{{life.name | uppercase }} </span></div>
 	<div><span>Tipo: </span>{{life.type }}</div>
-	<div><span>Total: </span>{{life.value}}</div>
-    <label>Novo valor:
-      <input [(ngModel)]="life.value" placeholder="quantidade" />
+	<div><span>Total: </span>{{life.value}}</div-->
+    <label>Novo nome:
+      <input [(ngModel)]="life.name" placeholder="nome" />
     </label>
-	
+	<br>
+	<label>
+		Novo tipo:
+		<select [(ngModel)]="life.type"  >
+	  <option value="vitalidade">Mob simles</option>
+	  <option value="espiral">Normal</option>
+	  <option value="grid">Gigante</option>
+	  </select>
+	</label>
+	<br>
+	<label>
+	Novo valor:{{life.type}}
+	<div ng-if="life.type === 'vitalidade'">
+	<input [(ngModel)]="life.value" placeholder="quantidade" />
+	</div>
+	<div ng-if="life.type === 'espiral'">
+	<input [(ngModel)]="life.value" placeholder="fis,agi,int" />
+	</div>
+	<div ng-if="life.type === 'grid'">
+	<input [(ngModel)]="life.value" placeholder="caixas" />
+	</div>
+	</label>
+	<br>
+	<button (click)="save()">save</button>
 </div> 
 <button (click)="goBack()">go back</button>

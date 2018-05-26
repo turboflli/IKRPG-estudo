@@ -1,21 +1,18 @@
 /* lifesComponent's private CSS styles */
 .lifes {
   margin: 0 0 2em 0;
-  
   list-style-type: none;
   padding: 0;
-  width: 18em;
+  width: 10em;
 }
-.lifes .group {
+.lifes  li{
 
-  position: relative;
+   position: relative;
   cursor: pointer;
-  float:left;
-  display: inline-block;
   background-color: #EEE;
- /* margin: .5em;*/
-  padding: 0.8em 0.7em 0 0.7em;
-  height: 2.0em;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
   border-radius: 4px;
 }
 
@@ -28,33 +25,54 @@
 
 .lifes a {
   color: #888;
-  float:left;
   text-decoration: none;
   position: relative;
   display: block;
-  width: 350px;
-  margin-bottom: .5em;
+  width: 100px;
 }
 
 .lifes a:hover {
   color:#607D8B;
 }
 
-.lifes .badge {/*numero*/
-  border-radius: 4px;
-  display: inline-block;
+.lifes .badge {
+   display: inline-block;
   font-size: small;
   color: white;
-  float:left;
-  padding: 0.9em 0.7em 0 0.7em;
+  padding: 0.8em 0.7em 0 0.7em;
   background-color: #607D8B;
   line-height: 1em;
   position: relative;
-  /*left: -1px;
-  top: -4px;*/
-  height: 2.6em;
+  //left: -1px;
+  top: -4px;
+  height: 1.8em;
   min-width: 16px;
   text-align: right;
- /* margin-right: 3.8em;*/
- /* border-radius: 4px 0 0 4px;*/
+  margin-right: .8em;
+  float:left;
+  border-radius: 4px 0 0 4px;
+}
+
+button {
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
+ 
+}
+ 
+button:hover {
+  background-color: #cfd8dc;
+}
+ 
+button.delete {
+  position: relative;
+  //left: 108px;
+  top: -18px;
+  background-color: gray !important;
+  color: white;
+  float:right;
 }

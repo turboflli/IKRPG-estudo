@@ -23,10 +23,11 @@ h4 {
 }
 .grid {
   margin: 0;
-  height:100px;
+
 }
 .col-1-4 {
-  width: 15%;
+  width: 50%;
+
 }
 .module {
   padding: 10px;
