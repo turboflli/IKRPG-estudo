@@ -53,9 +53,9 @@ export class LifeDetailComponent implements OnInit {
 		return resp;
 		//return new Array(max);
 	}
-	vitalityup(up:boolean): void{
+	vitalityup(i:number): void{
 		let novo=0;
-		if(up){
+		if(document.getElementById("cb"+i).checked){
 			novo=(+this.life.value)+1;
 		}else{
 			novo=(+this.life.value)-1;

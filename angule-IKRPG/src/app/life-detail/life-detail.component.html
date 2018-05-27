@@ -28,14 +28,17 @@
 		<input [(ngModel)]="life.value" placeholder="caixas" />
 		</div>
 	</div-->
-	<div *ngIf="life.type === 'vitalidade'">
-	{{life.value}}:
+	<div  *ngIf="life.type === 'vitalidade'">
+	
 	<!--input [(ngModel)]="life.value" placeholder="quantidade" /-->
 	<!--[checked]="i < life.value" não funcionou, logo tive que trapaçear-->
-	<input  (change)="vitalityup(this.checked)" type="checkbox" *ngFor="let i of numerica(0,15)" [checked]="i< +life.value" />
+	
+	<input  id="cb{{i}}" (change)="vitalityup(i)" type="checkbox" *ngFor="let i of numerica(0,15)" [checked]="i< +life.value" />
 	<!--input  (click)="vitalityup(this.checked)" type="checkbox" *ngFor="let i of numerica(+life.value,15)" /-->
 	</div>
+	
 	<div *ngIf="life.type === 'espiral'">
+	{{life.value}}
 	<input [(ngModel)]="life.value" placeholder="fis,agi,int" />
 	</div>
 	<div *ngIf="life.type === 'grid'">
@@ -45,4 +48,6 @@
 	<br>
 	<button (click)="save()">save</button>
 </div> 
+
+
 <button (click)="goBack()">go back</button>
