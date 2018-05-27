@@ -36,10 +36,39 @@ button:disabled {
   color: #ccc;
   cursor: auto;
 }
-.radio {
-	float: right;
+.firsts {
+	float: left;
+    margin-left: 46%;
+	top: 19px;
     position: relative;
-    left: -40%;
-
+}
+.container{
+	float: left;
+	width: 8%;
+}
+.radio{
+	background-color: #a77e2d !important;
+  color: #ffffff !important;
+}
+.top{
+	position: relative;
+    margin-left: -20px;
+}
+.bot{
+	top: 39px;
+    position: relative;
+	left: -20px;
+}
+.agidiv{
+	height: 70px;
+	background: #12ff10ab;
+}
+.fisdiv{
+	height: 70px;
+	background: #e81212cc;
+}
+.intdiv{
+	height: 70px;
+	background: #039be5;
 }
 

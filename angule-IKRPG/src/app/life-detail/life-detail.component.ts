@@ -11,6 +11,8 @@ import { LifeService } from '../life.service';
 })
 
 export class LifeDetailComponent implements OnInit {
+	private spirals = new Array();
+	
 @Input() life: Life;
   constructor( 
   private route: ActivatedRoute,
@@ -26,6 +28,8 @@ export class LifeDetailComponent implements OnInit {
 	  const id = +this.route.snapshot.paramMap.get('id'); // put (+) in front of this to converto to number
 	  this.lifeService.getLife(id)
 		.subscribe(life => this.life = life);
+		
+		
   }
    save(): void {
 	   this.lifeService.updateLife(this.life)
@@ -55,7 +59,8 @@ export class LifeDetailComponent implements OnInit {
 	}
 	vitalityup(i:number): void{
 		let novo=0;
-		if(document.getElementById("cb"+i).checked){
+		let cb=  <HTMLInputElement>  document.getElementById("cb"+i);
+		if(cb.checked){
 			novo=(+this.life.value)+1;
 		}else{
 			novo=(+this.life.value)-1;
@@ -63,4 +68,87 @@ export class LifeDetailComponent implements OnInit {
 		if(novo<0){novo=1};
 		this.life.value=String(novo);
 	}
+	private checkSpiral(): void{
+		if(this.spirals.length<1){
+		
+			let temp=this.life.value.split(',');
+			this.spirals[0]=+temp[0]
+			this.spirals[1]=+temp[1]
+			this.spirals[2]=+temp[2]
+			this.spirals[3]=+temp[3]
+		
+		}
+	}
+	getFis() : number{
+		this.checkSpiral()
+		return this.spirals[0];
+	}
+	fisup(i:number): void{
+		
+		let cb=  <HTMLInputElement>  document.getElementById("cbf"+i);
+		if(cb.checked){
+			this.spirals[0]++;
+		}else{
+			this.spirals[0]--;
+		}
+		
+		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
+	}
+	getAgi() : number{
+		this.checkSpiral()
+		return this.spirals[1];		
+	}
+	agiup(i:number): void{
+		
+		let cb=  <HTMLInputElement>  document.getElementById("cba"+i);
+		if(cb.checked){
+			this.spirals[1]++;
+		}else{
+			this.spirals[1]--;
+		}
+		
+		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
+	}
+	getInt() : number{
+		this.checkSpiral()
+		return this.spirals[2];
+	}
+	intup(i:number): void{
+		
+		let cb=  <HTMLInputElement>  document.getElementById("cbi"+i);
+		if(cb.checked){
+			this.spirals[2]++;
+		}else{
+			this.spirals[2]--;
+		}
+		
+		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
+	}
+	getField() : number{
+		this.checkSpiral()
+		return this.spirals[3];
+	}
+	fieldup(i:number): void{
+		
+		let cb=  <HTMLInputElement>  document.getElementById("cbd"+i);
+		if(cb.checked){
+			this.spirals[3]++;
+		}else{
+			this.spirals[3]--;
+		}
+		
+		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
+	}
+
+	/*vitalityup(up:boolean): void{
+		let novo=0;
+		if(up){
+			novo=(+this.life.value)+1;
+		}else{
+			novo=(+this.life.value)-1;
+		}
+		if(novo<0){novo=1};
+		this.life.value=String(novo);
+	}*/
+	
 }
