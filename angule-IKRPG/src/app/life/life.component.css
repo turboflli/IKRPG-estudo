@@ -3,7 +3,7 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 10em;
+  width: 11em;
 }
 .lifes  li{
 
@@ -28,7 +28,7 @@
   text-decoration: none;
   position: relative;
   display: block;
-  width: 100px;
+  width: 120px;
 }
 
 .lifes a:hover {

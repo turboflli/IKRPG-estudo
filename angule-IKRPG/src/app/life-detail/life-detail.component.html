@@ -16,7 +16,12 @@
 	</label>
 	<br>
 	<label>
-	Novo valor:
+	<!--  status  -->
+	Arm:<input type="number" [(ngModel)]="life.arm" placeholder="armadura" />
+	def:<input type="number" [(ngModel)]="life.def" placeholder="defesa" />
+	inc:<input type="number" [(ngModel)]="life.inc" placeholder="iniciativa" />
+	von:<input type="number" [(ngModel)]="life.von" placeholder="vontade" />
+	</label>
 	<!--div [ngSwitch]="life.type">
 		<div *ngSwitchCase="'vitalidade'">
 		<input [(ngModel)]="life.value" placeholder="quantidade" />
@@ -32,7 +37,7 @@
 	
 	<!--input [(ngModel)]="life.value" placeholder="quantidade" /-->
 	<!--[checked]="i < life.value" não funcionou, logo tive que trapaçear-->
-	
+	<!--  vit  -->
 	<input  id="cb{{i}}" (change)="vitalityup(i)" type="checkbox" *ngFor="let i of numerica(0,15)" [checked]="i< +life.value" />
 	<!--input  (click)="vitalityup(this.checked)" type="checkbox" *ngFor="let i of numerica(+life.value,15)" /-->
 	</div>
@@ -73,22 +78,94 @@
 	<!--  field  -->
 	<input  id="cbd{{i}}" (change)="fieldup(i)" type="checkbox" *ngFor="let i of numerica(0,6)" [checked]="i< getField()" />
 	</div>
+	<!--  grid  -->
 	<div *ngIf="life.type === 'grid'">
 	
-		<table>
+		<table border="1px" align="center">
 		<tr>
 			<th *ngFor="let i of numerica(0,6)">{{i+1}}</th>
 		</tr>
 		<tr *ngFor="let l of numerica(0,6)">
 			<td *ngFor="let letra of getColumn(l),let x = index">
-				<button id="btn{{l}}{{x}}" (click)="changeButton(l,x)">{{letra}}</button>
+				<button id="btn{{l}}{{x}}" [class.offgrid]="letra=='x'" [class.bodygrid]="letra=='o'" (click)="callchoice($event)">{{letra}}</button>
 			</td>
-		<tr>
+		</tr>
 		</table>
+		<label>Campo de força:</label>
+		<input  type="checkbox" *ngFor="let i of numerica(0,10)" />
 	</div>
-	</label>
+	<!--  weapons  -->
+	<!--  meele weapons  -->
+	<button (click)="addMeeleWepon()"><label>Nova arma corpo-a-corpo</label></button>
+	<table border="1px" align="center" *ngFor="let wep of life.melleweapons">
+	<tr>
+		<th colspan="4">
+		<input [(ngModel)]="wep.name" placeholder="nome" />
+		<button (click)="deleteMeeleWeapon(wep)">Remover</button>
+		</th>
+	</tr>
+	<tr>
+		<td>
+		<img src="assets/meele.png" />
+		
+		<input class="local" type="text" [(ngModel)]="wep.local" />
+		</td>
+		<td>
+		ACO:<input type="number" [(ngModel)]="wep.hit" placeholder="acerto" />
+		</td>
+		<td>
+		POD:<input type="number" [(ngModel)]="wep.pod" placeholder="potência" />
+		</td>
+		<td>
+		P+F:<input type="number" [(ngModel)]="wep.pf" placeholder="potência + força" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4">Notas:<input [(ngModel)]="wep.note" placeholder="notas" /></td>
+	</tr>
+	</table>
+	<!--  range weapons  -->
+	<button (click)="addRageWepon()"><label>Nova arma à distância</label></button>
+	<table border="1px" align="center" *ngFor="let wep of life.rangeweapons">
+	<tr>
+		<th colspan="6">
+		<input [(ngModel)]="wep.name" placeholder="nome" />
+		<button (click)="deleteRangeWeapon(wep)">Remover</button>
+		</th>
+	</tr>
+	<tr>
+		<td>
+		<img src="assets/range.png" />
+		<input class="local" type="text" [(ngModel)]="wep.local" />
+		</td>
+		<td>
+		ADI:<input type="number" [(ngModel)]="wep.hit" placeholder="acerto" />
+		</td>
+		<td>
+		ALC:<input type="number" [(ngModel)]="wep.alc" placeholder="alcance" />
+		</td>
+		<td>
+		ROF:<input type="number" [(ngModel)]="wep.munition" placeholder="m" />
+		</td>
+		<td>
+		ADE:<input type="number" [(ngModel)]="wep.ade" placeholder="Área" />
+		</td>
+		<td>
+		POD:<input type="number" [(ngModel)]="wep.pod" placeholder="potência" />
+		</td>
+		
+		
+	</tr>
+	<tr>
+		<td colspan="6">Notas:<input [(ngModel)]="wep.note" placeholder="notas" /></td>
+	</tr>
+	</table>
+	
 	<br>
 	<button (click)="save()">save</button>
+	 <button (click)="add();">
+		add
+	  </button>
 </div> 
 
 

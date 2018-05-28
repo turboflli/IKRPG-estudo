@@ -1,4 +1,6 @@
 import { Life } from '../Life';
+import { MeeleWeapon } from '../meeleweapon';
+import { RangeWeapon } from '../rangeweapon';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -13,7 +15,7 @@ import { LifeService } from '../life.service';
 export class LifeDetailComponent implements OnInit {
 	private spirals = new Array();
 	private grid = new Array();
-	private letras :String[] = ['x','o','d','e','m','c','a'];
+	private letras :String[] = ['x','o','d','e','m','c','a','g'];
 	
 @Input() life: Life;
   constructor( 
@@ -28,16 +30,25 @@ export class LifeDetailComponent implements OnInit {
   
   getLife(): void {
 	  const id = +this.route.snapshot.paramMap.get('id'); // put (+) in front of this to converto to number
-	  this.lifeService.getLife(id)
+	  if(id==0){
+		  this.life=new Life();//({ 'mob', 'vitalidade', '0',[],[],'10','12','11','8' } as Life);
+		  	this.life.rangeweapons = new Array();
+			this.life.melleweapons = new Array();
+	  }else{
+		  	  this.lifeService.getLife(id)
 		.subscribe(life => this.life = life);
-		
+	  }
 		
   }
    save(): void {
 	   this.lifeService.updateLife(this.life)
 	   .subscribe(() => this.goBack());
    }
-  
+  add(): void{
+	  this.lifeService.addLife(this.life).subscribe(life => {
+		this.life=life;
+	});
+  }
   goBack(): void {
 	  this.location.back();
 	}
@@ -47,7 +58,7 @@ export class LifeDetailComponent implements OnInit {
 		}else if(this.life.type=='espiral'){
 			this.life.value='0,0,0';
 		}else{
-			this.life.value='0,0,0,0,0,0';
+			this.life.value='o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o';
 		}
 	}
 	numerica(start:number, max:number): number[]{
@@ -151,7 +162,7 @@ export class LifeDetailComponent implements OnInit {
 		}
 	}
 	getColumn(i:number): String[]{
-		this.checkGrid():
+		this.checkGrid();
 		return this.grid[i];
 	}
 	changeButton(l:number,c:number): void{
@@ -179,5 +190,37 @@ export class LifeDetailComponent implements OnInit {
 			}
 		}
 		this.life.value=novo;
+	}
+	damageButton(l:number,c:number): void{
+		let btn=document.getElementById("btn"+l+c);
+		if ( btn.classList.contains('damaged') ){
+			btn.classList.remove('damaged');
+		}else{
+			btn.classList.add('damaged');
+		}
+	}
+	callchoice(e){
+		let temp=e.srcElement.id.substring(3).split('');
+		let l=+temp[0];
+		let c=+temp[1];
+		if(e.shiftKey || e.ctrlKey){
+			this.damageButton(l,c);
+		}else{
+			this.changeButton(l,c);
+		}
+	}
+	addMeeleWepon(): void{
+		let mw=new MeeleWeapon();
+		this.life.melleweapons.push(mw);
+	}
+	addRageWepon(): void{
+		let rw=new RangeWeapon();
+		this.life.rangeweapons.push(rw);
+	}
+	deleteMeeleWeapon(mw:MeeleWeapon): void{
+		this.life.melleweapons = this.life.melleweapons.filter(m => m !== mw);
+	}
+	deleteRangeWeapon(rw:RangeWeapon): void{
+		this.life.rangeweapons = this.life.rangeweapons.filter(r => r !== rw);
 	}
 }

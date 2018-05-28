@@ -13,6 +13,9 @@ input {
   font-size: 1em;
   padding-left: .4em;
 }
+input[type="number"]{
+	width:50px;
+}
 select {
   height: 2em;
   font-size: 1em;
@@ -21,7 +24,7 @@ select {
 button {
   margin-top: 20px;
   font-family: Arial;
-  background-color: #eee;
+  background-color: #ddd;
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
@@ -29,7 +32,7 @@ button {
   float:center;
 }
 button:hover {
-  background-color: #cfd8dc;
+  background-color: #27ace8;
 }
 button:disabled {
   background-color: #eee;
@@ -71,4 +74,29 @@ button:disabled {
 	height: 70px;
 	background: #039be5;
 }
-
+.damaged {
+	background: red;
+    color: #03ff24;
+}
+.bodygrid {
+	color:#ffffff00  !important;
+}
+.offgrid {
+	background: #ffffff00;
+	color:#ffffff00;
+}
+table button{
+	margin-top: 0px !important;
+	min-width: 34px;
+}
+.local{
+	width: 20px;
+    height: 13px;
+    position: relative;
+    top: 2px;
+    left: -8px;
+    padding: 0px;
+	border-color: #ffffff00;
+    background: #ffffff00;
+    color: brown;
+}

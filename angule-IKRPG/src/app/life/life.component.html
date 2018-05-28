@@ -1,4 +1,4 @@
-<div>
+<!--div>
   <label>Life nome:
     <input #lifeName />
   </label>
@@ -8,12 +8,12 @@
   <label>Life valor:
     <input #lifeValue />
   </label>
-  <!-- (click) passes input value to add() and then clears the input -->
+  
   <button (click)="add(lifeName.value,lifeType.value,lifeValue.value); 
   lifeName.value='';lifeType.value='';lifeValue.value=''">
     add
   </button>
-</div>
+</div-->
 <div ><h2>My Lifes</h2>
 <ul class="lifes">
   <li *ngFor="let life of lifes;let i = index" >
