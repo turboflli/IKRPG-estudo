@@ -12,6 +12,8 @@ import { LifeService } from '../life.service';
 
 export class LifeDetailComponent implements OnInit {
 	private spirals = new Array();
+	private grid = new Array();
+	private letras :String[] = ['x','o','d','e','m','c','a'];
 	
 @Input() life: Life;
   constructor( 
@@ -139,16 +141,43 @@ export class LifeDetailComponent implements OnInit {
 		
 		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
 	}
-
-	/*vitalityup(up:boolean): void{
-		let novo=0;
-		if(up){
-			novo=(+this.life.value)+1;
-		}else{
-			novo=(+this.life.value)-1;
-		}
-		if(novo<0){novo=1};
-		this.life.value=String(novo);
-	}*/
 	
+	private checkGrid(): void{
+		if(this.grid.length<1){
+			let temp=this.life.value.split(';');
+			for(let i=0;i<temp.length;i++){
+				this.grid.push(temp[i].split(','));
+			}
+		}
+	}
+	getColumn(i:number): String[]{
+		this.checkGrid():
+		return this.grid[i];
+	}
+	changeButton(l:number,c:number): void{
+		let temp=this.grid[l][c];
+		let position=this.letras.indexOf(temp);
+		if(position==this.letras.length-1){
+			position=0;
+		}else{
+			position++;
+		}
+		this.grid[l][c]=this.letras[position];
+		this.savegrid();
+	}
+	private savegrid(): void{
+		let novo='';
+		for(let l=0;l<6;l++){
+			for(let c=0;c<6;c++){
+				novo+=this.grid[l][c];
+				if(c<5){
+					novo+=",";
+				}
+			}
+			if(l<5){
+				novo+=";";
+			}
+		}
+		this.life.value=novo;
+	}
 }

@@ -74,7 +74,17 @@
 	<input  id="cbd{{i}}" (change)="fieldup(i)" type="checkbox" *ngFor="let i of numerica(0,6)" [checked]="i< getField()" />
 	</div>
 	<div *ngIf="life.type === 'grid'">
-	<input [(ngModel)]="life.value" placeholder="caixas" />
+	
+		<table>
+		<tr>
+			<th *ngFor="let i of numerica(0,6)">{{i+1}}</th>
+		</tr>
+		<tr *ngFor="let l of numerica(0,6)">
+			<td *ngFor="let letra of getColumn(l),let x = index">
+				<button id="btn{{l}}{{x}}" (click)="changeButton(l,x)">{{letra}}</button>
+			</td>
+		<tr>
+		</table>
 	</div>
 	</label>
 	<br>
