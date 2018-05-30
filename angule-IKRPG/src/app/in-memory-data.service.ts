@@ -3,17 +3,13 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const lifes = [
-     /*{ id: 1, name: 'mob 1', type: 'vitalidade', value: '8', arm:12, def:11, inc: 12, von: 11, 
-		melleweapons: [
-		{name:'espada', hit:6, pod:3, pf:9, note:'',local:''}
-		],
+     { id: 1, name: 'vazio', type: 'vitalidade', value: '8', arm:0, def:0, inc: 0, von: 0, 
+		melleweapons: [],
 		rangeweapons:[],
-		abilities:[
-		{name:'durão', desc:'Se incapacitado 1d6 em 5,6 rec 1 em cada espiral', pg:'56'}
-		],
+		abilities:[],
 		magics:[]
 	 },
-	 { id: 2, name: 'mob 2', type: 'vitalidade', value: '6', arm:10, def:13, inc: 13, von: 10, 
+	 /*{ id: 2, name: 'mob 2', type: 'vitalidade', value: '6', arm:10, def:13, inc: 13, von: 10, 
 		melleweapons: [
 		{name:'espada', hit:5, pod:3, pf:7, note:'',local:''}
 		],

@@ -97,7 +97,6 @@
 	<button (click)="addMeeleWepon()"><label>Nova arma corpo-a-corpo</label></button>
 	<button (click)="addRageWepon()"><label>Nova arma à distância</label></button>
 	<button (click)="addAbility()"><label>Nova Habilidade</label></button>
-	<button (click)="addAbility()"><label>Nova Habilidade</label></button>
 	<button (click)="addMagic()"><label>Nova Magia</label></button>
 	<br>
 	<!--  weapons  -->
@@ -200,6 +199,7 @@
 			<th >nome</th>
 			<th >cost</th>
 			<th >alc</th>
+			<th >ade</th>
 			<th >pod</th>
 			<th >m</th>
 			<th >off</th>
@@ -217,6 +217,9 @@
 			</td>
 			<td >
 				<input  type="number" [(ngModel)]="magic.ade" placeholder="Área" />
+			</td>
+			<td >
+				<input  type="number" [(ngModel)]="magic.pod" placeholder="Potência" />
 			</td>
 			<td >
 				<input  type="checkbox" [(ngModel)]="magic.man" />
