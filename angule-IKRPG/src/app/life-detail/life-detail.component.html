@@ -81,22 +81,26 @@
 	<!--  grid  -->
 	<div *ngIf="life.type === 'grid'">
 	
-		<table border="1px" align="center">
-		<tr>
-			<th *ngFor="let i of numerica(0,6)">{{i+1}}</th>
+		<table  align="center" class="tablegrid" style="background-image: url(assets/grid.png)">
+		<tr class="gridcomp">
+			<th *ngFor="let i of numerica(0,6)"></th>
 		</tr>
 		<tr *ngFor="let l of numerica(0,6)">
 			<td *ngFor="let letra of getColumn(l),let x = index">
-				<button id="btn{{l}}{{x}}" [class.offgrid]="letra=='x'" [class.bodygrid]="letra=='o'" (click)="callchoice($event)">{{letra}}</button>
+				<button class="gridcomp gridbuton" id="btn{{l}}{{x}}" [class.damaged]="letra.indexOf('.')!=-1" [class.offgrid]="letra.indexOf('x')!=-1" [class.bodygrid]="letra.indexOf('o')!=-1" (click)="callchoice($event)">{{letra[0]}}</button>
 			</td>
 		</tr>
 		</table>
-		<label>Campo de força:</label>
-		<input  type="checkbox" *ngFor="let i of numerica(0,10)" />
+		<input id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,10)" [checked]="i< getGField()"/>
 	</div>
+	<!--  adds  -->
+	<button (click)="addMeeleWepon()"><label>Nova arma corpo-a-corpo</label></button>
+	<button (click)="addRageWepon()"><label>Nova arma à distância</label></button>
+	<button (click)="addAbility()"><label>Nova Habilidade</label></button>
+	<br>
 	<!--  weapons  -->
 	<!--  meele weapons  -->
-	<button (click)="addMeeleWepon()"><label>Nova arma corpo-a-corpo</label></button>
+	<!--align="{{wep.local == 'd' ? 'right' : wep.local == 'e' ? 'left' : 'center' }}"-->
 	<table border="1px" align="center" *ngFor="let wep of life.melleweapons">
 	<tr>
 		<th colspan="4">
@@ -125,7 +129,7 @@
 	</tr>
 	</table>
 	<!--  range weapons  -->
-	<button (click)="addRageWepon()"><label>Nova arma à distância</label></button>
+	<!--align="{{wep.local == 'd' ? 'right' : wep.local == 'e' ? 'left' : 'center' }}"-->
 	<table border="1px" align="center" *ngFor="let wep of life.rangeweapons">
 	<tr>
 		<th colspan="6">
@@ -160,12 +164,42 @@
 		<td colspan="6">Notas:<input [(ngModel)]="wep.note" placeholder="notas" /></td>
 	</tr>
 	</table>
+	<!--  abilities  -->
+	<table border="1px" align="center" *ngFor="let ability of life.abilities,let i = index">
+		<tr *ngIf="i==0">
+			<th >nome</th>
+			<th >descrição</th>
+			<th >pagina</th>
+		</tr>
+		
+		<tr >
+			<td rowspan="2">
+				<input  type="text" [(ngModel)]="ability.name" placeholder="nome" />
+			</td>
+			<td rowspan="2">
+				<textarea class="desc" placeholder="descrição" [(ngModel)]="ability.desc" ></textarea>
+			</td>
+			<td >
+				<input class="pg" type="text" [(ngModel)]="ability.pg" placeholder="livro e página" />
+				
+			</td>
+			
+		</tr>
+		<tr>
+			<td>
+				<button (click)="deleteAbility(ability)">x</button>
+			</td>
+		</tr>
+	
+	</table>
 	
 	<br>
+
 	<button (click)="save()">save</button>
 	 <button (click)="add();">
 		add
 	  </button>
+
 </div> 
 
 

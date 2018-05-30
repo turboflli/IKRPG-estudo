@@ -48,6 +48,7 @@ button:disabled {
 .container{
 	float: left;
 	width: 8%;
+	min-width: 113px;
 }
 .radio{
 	background-color: #a77e2d !important;
@@ -75,15 +76,18 @@ button:disabled {
 	background: #039be5;
 }
 .damaged {
-	background: red;
+	background: red !important;;
     color: #03ff24;
 }
 .bodygrid {
 	color:#ffffff00  !important;
 }
 .offgrid {
-	background: #ffffff00;
+	background: #1f0400 !important;
 	color:#ffffff00;
+}
+table{
+	margin-top: 10px;
 }
 table button{
 	margin-top: 0px !important;
@@ -99,4 +103,30 @@ table button{
 	border-color: #ffffff00;
     background: #ffffff00;
     color: brown;
+}
+.pg{
+	width: 64px;
+}
+.desc{
+	height: 59px;
+}
+.gridcomp{
+	height: 25px;
+}
+.tablegrid{
+	/*background-image: url(assets/grid.png);*/
+    /*background-size: cover;*/
+	width: 254px;
+    height: 269px;
+	background-size: cover;
+}
+.gridbuton{
+	border-radius: 0px;
+    height: 34px;
+    top: -2px;
+    position: relative;
+	background:#ffffff00;
+	    font-size: 15px;
+    font-family: cursive;
+    font-weight: bold;
 }

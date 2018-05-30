@@ -1,6 +1,7 @@
 import { Life } from '../Life';
 import { MeeleWeapon } from '../meeleweapon';
 import { RangeWeapon } from '../rangeweapon';
+import { Ability } from '../ability';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -34,6 +35,7 @@ export class LifeDetailComponent implements OnInit {
 		  this.life=new Life();//({ 'mob', 'vitalidade', '0',[],[],'10','12','11','8' } as Life);
 		  	this.life.rangeweapons = new Array();
 			this.life.melleweapons = new Array();
+			this.life.abilities = new Array();
 	  }else{
 		  	  this.lifeService.getLife(id)
 		.subscribe(life => this.life = life);
@@ -58,7 +60,7 @@ export class LifeDetailComponent implements OnInit {
 		}else if(this.life.type=='espiral'){
 			this.life.value='0,0,0';
 		}else{
-			this.life.value='o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o';
+			this.life.value='o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;0';
 		}
 	}
 	numerica(start:number, max:number): number[]{
@@ -165,9 +167,25 @@ export class LifeDetailComponent implements OnInit {
 		this.checkGrid();
 		return this.grid[i];
 	}
+	getGField() : number{
+		this.checkGrid();
+		return +this.grid[6][0];
+	}
+	Gfieldup(i:number): void{
+		let novo=+this.grid[6][0];
+		let cb=  <HTMLInputElement>  document.getElementById("cbgd"+i);
+		if(cb.checked){
+			novo++;
+		}else{
+			novo--;
+		}
+		this.grid[6][0]=""+novo;
+		this.savegrid();
+		
+	}
 	changeButton(l:number,c:number): void{
 		let temp=this.grid[l][c];
-		let position=this.letras.indexOf(temp);
+		let position=this.letras.indexOf(temp[0]);
 		if(position==this.letras.length-1){
 			position=0;
 		}else{
@@ -189,15 +207,21 @@ export class LifeDetailComponent implements OnInit {
 				novo+=";";
 			}
 		}
-		this.life.value=novo;
+		this.life.value=novo+";"+this.grid[6][0];
 	}
 	damageButton(l:number,c:number): void{
-		let btn=document.getElementById("btn"+l+c);
+		if(this.grid[l][c].indexOf('.')!=-1){
+			this.grid[l][c]=this.grid[l][c][0];
+		}else{
+			this.grid[l][c]+='.';
+		}
+		this.savegrid();
+		/*let btn=document.getElementById("btn"+l+c);
 		if ( btn.classList.contains('damaged') ){
 			btn.classList.remove('damaged');
 		}else{
 			btn.classList.add('damaged');
-		}
+		}*/
 	}
 	callchoice(e){
 		let temp=e.srcElement.id.substring(3).split('');
@@ -217,10 +241,17 @@ export class LifeDetailComponent implements OnInit {
 		let rw=new RangeWeapon();
 		this.life.rangeweapons.push(rw);
 	}
+	addAbility(): void{
+		let a=new Ability();
+		this.life.abilities.push(a);
+	}
 	deleteMeeleWeapon(mw:MeeleWeapon): void{
 		this.life.melleweapons = this.life.melleweapons.filter(m => m !== mw);
 	}
 	deleteRangeWeapon(rw:RangeWeapon): void{
 		this.life.rangeweapons = this.life.rangeweapons.filter(r => r !== rw);
+	}
+	deleteAbility(a:Ability): void{
+		this.life.abilities = this.life.abilities.filter(h => h !== a);
 	}
 }
