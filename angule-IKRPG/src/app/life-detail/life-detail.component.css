@@ -130,3 +130,6 @@ table button{
     font-family: cursive;
     font-weight: bold;
 }
+.inputdesc{
+    width: 76%;
+}

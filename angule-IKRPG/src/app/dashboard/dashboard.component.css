@@ -62,3 +62,6 @@ h4 {
     min-width: 120px;
   }
 }
+.hidden{
+	display:none;
+}

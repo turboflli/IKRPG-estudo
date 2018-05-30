@@ -1,6 +1,7 @@
 import { MeeleWeapon } from './meeleweapon';
 import { RangeWeapon } from './rangeweapon';
 import { Ability } from './ability';
+import { Magic } from './magic';
 export class Life {
 	id:number;//cursed
 	name:String;
@@ -13,4 +14,5 @@ export class Life {
 	inc:number;
 	von:number;
 	abilities:Ability[];
+	magics:Magic[];
 }

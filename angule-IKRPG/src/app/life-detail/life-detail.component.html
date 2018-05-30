@@ -97,6 +97,8 @@
 	<button (click)="addMeeleWepon()"><label>Nova arma corpo-a-corpo</label></button>
 	<button (click)="addRageWepon()"><label>Nova arma à distância</label></button>
 	<button (click)="addAbility()"><label>Nova Habilidade</label></button>
+	<button (click)="addAbility()"><label>Nova Habilidade</label></button>
+	<button (click)="addMagic()"><label>Nova Magia</label></button>
 	<br>
 	<!--  weapons  -->
 	<!--  meele weapons  -->
@@ -125,7 +127,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4">Notas:<input [(ngModel)]="wep.note" placeholder="notas" /></td>
+		<td colspan="4">Notas:<input class="inputdesc" [(ngModel)]="wep.note" placeholder="notas" /></td>
 	</tr>
 	</table>
 	<!--  range weapons  -->
@@ -161,7 +163,7 @@
 		
 	</tr>
 	<tr>
-		<td colspan="6">Notas:<input [(ngModel)]="wep.note" placeholder="notas" /></td>
+		<td colspan="6">Notas:<input class="inputdesc" [(ngModel)]="wep.note" placeholder="notas" /></td>
 	</tr>
 	</table>
 	<!--  abilities  -->
@@ -192,7 +194,46 @@
 		</tr>
 	
 	</table>
+	<!--  Magic  -->
+	<table border="1px" align="center" *ngFor="let magic of life.magics,let i = index">
+		<tr *ngIf="i==0">
+			<th >nome</th>
+			<th >cost</th>
+			<th >alc</th>
+			<th >pod</th>
+			<th >m</th>
+			<th >off</th>
+		</tr>
+		
+		<tr >
+			<td >
+				<input  type="text" [(ngModel)]="magic.name" placeholder="nome" />
+			</td>
+			<td >
+				<input  type="number" [(ngModel)]="magic.cost" placeholder="custo" />
+			</td>
+			<td >
+				<input class="pg" type="text" [(ngModel)]="magic.alc" placeholder="alcance" />
+			</td>
+			<td >
+				<input  type="number" [(ngModel)]="magic.ade" placeholder="Área" />
+			</td>
+			<td >
+				<input  type="checkbox" [(ngModel)]="magic.man" />
+			</td>
+			<td >
+				<input  type="checkbox" [(ngModel)]="magic.off" />
+			</td>
+			
+		</tr>
+		<tr>
+			<td colspan="6">
+				<label>Note:</label><input class="inputdesc" type="text" [(ngModel)]="magic.note" placeholder="nome" />
+				<button (click)="deleteMagic(magic)">x</button>
+			</td>
+		</tr>
 	
+	</table>
 	<br>
 
 	<button (click)="save()">save</button>

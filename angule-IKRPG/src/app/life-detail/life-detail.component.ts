@@ -2,6 +2,7 @@ import { Life } from '../Life';
 import { MeeleWeapon } from '../meeleweapon';
 import { RangeWeapon } from '../rangeweapon';
 import { Ability } from '../ability';
+import { Magic } from '../magic';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -36,6 +37,7 @@ export class LifeDetailComponent implements OnInit {
 		  	this.life.rangeweapons = new Array();
 			this.life.melleweapons = new Array();
 			this.life.abilities = new Array();
+			this.life.magics = new Array();
 	  }else{
 		  	  this.lifeService.getLife(id)
 		.subscribe(life => this.life = life);
@@ -245,6 +247,10 @@ export class LifeDetailComponent implements OnInit {
 		let a=new Ability();
 		this.life.abilities.push(a);
 	}
+	addMagic(): void{
+		let m=new Magic();
+		this.life.magics.push(m);
+	}
 	deleteMeeleWeapon(mw:MeeleWeapon): void{
 		this.life.melleweapons = this.life.melleweapons.filter(m => m !== mw);
 	}
@@ -253,5 +259,8 @@ export class LifeDetailComponent implements OnInit {
 	}
 	deleteAbility(a:Ability): void{
 		this.life.abilities = this.life.abilities.filter(h => h !== a);
+	}
+	deleteMagic(m:Magic): void{
+		this.life.magics = this.life.magics.filter(g => g !== m);
 	}
 }
