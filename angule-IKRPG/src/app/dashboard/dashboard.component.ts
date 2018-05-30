@@ -59,15 +59,24 @@ export class DashboardComponent implements OnInit {
         var data = target.result;
 		let arearesp=  <HTMLInputElement>  document.getElementById("arearesp");
 		arearesp.value=data;
-
+		
+		let dr=document.getElementById("divready");
+		dr.classList.remove('hidden');
+		
     };
     reader.readAsText(importedfile.files[0]);
-	let arearesp=  <HTMLInputElement>  document.getElementById("arearesp");
+	
+	 
+  }
+  importLifes(): void{
+	  let arearesp=  <HTMLInputElement>  document.getElementById("arearesp");
 	 let importedlifes=JSON.parse(arearesp.value);
 	  for(let i=0;i<importedlifes.length;i++){
 		  this.add(importedlifes[i]);
 	  }
-	 
+	  let dr=document.getElementById("divready");
+	  dr.classList.add('hidden');
+		
   }
   private add(l:Life): void{
 	  this.lifeService.addLife(l).subscribe(life => {

@@ -3,13 +3,13 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const lifes = [
-     { id: 1, name: 'vazio', type: 'vitalidade', value: '8', arm:0, def:0, inc: 0, von: 0, 
+     { id: 1, name: 'vazio', type: 'vitalidade', value: '8', arm:0, def:0, inc: 0, von: 0, arc:0, cmd:0,
 		melleweapons: [],
 		rangeweapons:[],
 		abilities:[],
 		magics:[]
 	 },
-	 /*{ id: 2, name: 'mob 2', type: 'vitalidade', value: '6', arm:10, def:13, inc: 13, von: 10, 
+	 /*{ id: 2, name: 'mob 2', type: 'vitalidade', value: '6', arm:10, def:13, inc: 13, von: 10, arc:0, cmd:4,
 		melleweapons: [
 		{name:'espada', hit:5, pod:3, pf:7, note:'',local:''}
 		],
@@ -19,7 +19,7 @@ export class InMemoryDataService implements InMemoryDbService {
 		abilities:[],
 		magics:[]
 	 },
-	 { id:3, name: 'lock 1', type: 'espiral', value: '6,4,4,0', arm:12, def:11, inc: 12, von: 10, 
+	 { id:3, name: 'lock 1', type: 'espiral', value: '6,4,4,0', arm:12, def:11, inc: 12, von: 10, arc:4, cmd:6,
 		melleweapons: [
 		{name:'lança', hit:5, pod:5, pf:10, note:'',local:''}
 		],
@@ -33,7 +33,7 @@ export class InMemoryDataService implements InMemoryDbService {
 		{name:'pacto da morte', cost:2, alc:'ctr', ade:0, pod:0, man:true, off:false, note:'+2arm'}
 		]
 	 },
-	 { id:4, name: 'beats 1', type: 'espiral', value: '9,5,3,0', arm:15, def:10, inc: 13, von: 14, 
+	 { id:4, name: 'beats 1', type: 'espiral', value: '9,5,3,0', arm:15, def:10, inc: 13, von: 14, arc:0, cmd:3,
 		melleweapons: [
 		{name:'garra', hit:6, pod:4, pf:11, note:'',local:'d'},
 		{name:'garra', hit:6, pod:4, pf:11, note:'',local:'e'},
@@ -51,9 +51,9 @@ export class InMemoryDataService implements InMemoryDbService {
 	 value:'x,x,o,o,x,x;'+
 	 'x,o,o,o,o,x;'+
 	 'o,o,o,o,o,o;'+
-	 'o,e,o,o,d,o;'+
-	 'e,e,m,c,d,d;'+
-	 'x,m,m,c,c,x;0', arm:12, def:11, inc: 12, von: 11,
+	 'o,L,o,o,R,o;'+
+	 'L,L,M,C,D,D;'+
+	 'x,M,M,C,C,x;0', arm:12, def:11, inc: 12, von: 11, arc:0, cmd:0,
 		melleweapons: [
 		{name:'necrojector', hit:7, pod:5, pf:15, note:'deixa corrosão,mão livre',local:'d'}
 		],

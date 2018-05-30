@@ -2,25 +2,27 @@
 	<!--div><span>{{life.name | uppercase }} </span></div>
 	<div><span>Tipo: </span>{{life.type }}</div>
 	<div><span>Total: </span>{{life.value}}</div-->
-    <label>Novo nome:
-      <input [(ngModel)]="life.name" placeholder="nome" />
+    <label>New Name:
+      <input [(ngModel)]="life.name" placeholder="name" />
     </label>
 	<br>
 	<label>
-		Novo tipo:
+		New Type:
 		<select (change)="setdefault()" [(ngModel)]="life.type"  >
-	  <option value="vitalidade">Mob simles</option>
-	  <option value="espiral">Normal</option>
-	  <option value="grid">Gigante</option>
+	  <option value="vitalidade">Vitality</option>
+	  <option value="espiral">Spiral</option>
+	  <option value="grid">Warjack</option>
 	  </select>
 	</label>
 	<br>
 	<label>
 	<!--  status  -->
-	Arm:<input type="number" [(ngModel)]="life.arm" placeholder="armadura" />
-	def:<input type="number" [(ngModel)]="life.def" placeholder="defesa" />
-	inc:<input type="number" [(ngModel)]="life.inc" placeholder="iniciativa" />
-	von:<input type="number" [(ngModel)]="life.von" placeholder="vontade" />
+	ARM:<input type="number" [(ngModel)]="life.arm" placeholder="arm" />
+	DEF:<input type="number" [(ngModel)]="life.def" placeholder="def" />
+	INIT:<input type="number" [(ngModel)]="life.inc" placeholder="init" />
+	WILL:<input type="number" [(ngModel)]="life.von" placeholder="will" />
+	ARC:<input type="number" [(ngModel)]="life.arc" placeholder="arc" />
+	CMD:<input type="number" [(ngModel)]="life.cmd" placeholder="cmd" />
 	</label>
 	<!--div [ngSwitch]="life.type">
 		<div *ngSwitchCase="'vitalidade'">
@@ -94,10 +96,10 @@
 		<input id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,10)" [checked]="i< getGField()"/>
 	</div>
 	<!--  adds  -->
-	<button (click)="addMeeleWepon()"><label>Nova arma corpo-a-corpo</label></button>
-	<button (click)="addRageWepon()"><label>Nova arma à distância</label></button>
-	<button (click)="addAbility()"><label>Nova Habilidade</label></button>
-	<button (click)="addMagic()"><label>Nova Magia</label></button>
+	<button (click)="addMeeleWepon()"><label>New Meele Weapon</label></button>
+	<button (click)="addRageWepon()"><label>New Range Weapon</label></button>
+	<button (click)="addAbility()"><label>New Ability</label></button>
+	<button (click)="addMagic()"><label>New Magic</label></button>
 	<br>
 	<!--  weapons  -->
 	<!--  meele weapons  -->
@@ -105,8 +107,8 @@
 	<table border="1px" align="center" *ngFor="let wep of life.melleweapons">
 	<tr>
 		<th colspan="4">
-		<input [(ngModel)]="wep.name" placeholder="nome" />
-		<button (click)="deleteMeeleWeapon(wep)">Remover</button>
+		<input [(ngModel)]="wep.name" placeholder="name" />
+		<button (click)="deleteMeeleWeapon(wep)">Remove</button>
 		</th>
 	</tr>
 	<tr>
@@ -116,17 +118,17 @@
 		<input class="local" type="text" [(ngModel)]="wep.local" />
 		</td>
 		<td>
-		ACO:<input type="number" [(ngModel)]="wep.hit" placeholder="acerto" />
+		MAT:<input type="number" [(ngModel)]="wep.hit" placeholder="mat" />
 		</td>
 		<td>
-		POD:<input type="number" [(ngModel)]="wep.pod" placeholder="potência" />
+		POW:<input type="number" [(ngModel)]="wep.pod" placeholder="pow" />
 		</td>
 		<td>
-		P+F:<input type="number" [(ngModel)]="wep.pf" placeholder="potência + força" />
+		S+P:<input type="number" [(ngModel)]="wep.pf" placeholder="s + p" />
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4">Notas:<input class="inputdesc" [(ngModel)]="wep.note" placeholder="notas" /></td>
+		<td colspan="4">Note:<input class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
 	</tr>
 	</table>
 	<!--  range weapons  -->
@@ -134,8 +136,8 @@
 	<table border="1px" align="center" *ngFor="let wep of life.rangeweapons">
 	<tr>
 		<th colspan="6">
-		<input [(ngModel)]="wep.name" placeholder="nome" />
-		<button (click)="deleteRangeWeapon(wep)">Remover</button>
+		<input [(ngModel)]="wep.name" placeholder="name" />
+		<button (click)="deleteRangeWeapon(wep)">Remove</button>
 		</th>
 	</tr>
 	<tr>
@@ -144,44 +146,44 @@
 		<input class="local" type="text" [(ngModel)]="wep.local" />
 		</td>
 		<td>
-		ADI:<input type="number" [(ngModel)]="wep.hit" placeholder="acerto" />
+		RAT:<input type="number" [(ngModel)]="wep.hit" placeholder="rat" />
 		</td>
 		<td>
-		ALC:<input type="number" [(ngModel)]="wep.alc" placeholder="alcance" />
+		RNG:<input type="number" [(ngModel)]="wep.alc" placeholder="rng" />
 		</td>
 		<td>
-		ROF:<input type="number" [(ngModel)]="wep.munition" placeholder="m" />
+		ROF:<input type="number" [(ngModel)]="wep.munition" placeholder="rof" />
 		</td>
 		<td>
-		ADE:<input type="number" [(ngModel)]="wep.ade" placeholder="Área" />
+		AOE:<input type="number" [(ngModel)]="wep.ade" placeholder="aoe" />
 		</td>
 		<td>
-		POD:<input type="number" [(ngModel)]="wep.pod" placeholder="potência" />
+		POW:<input type="number" [(ngModel)]="wep.pod" placeholder="pow" />
 		</td>
 		
 		
 	</tr>
 	<tr>
-		<td colspan="6">Notas:<input class="inputdesc" [(ngModel)]="wep.note" placeholder="notas" /></td>
+		<td colspan="6">Note:<input class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
 	</tr>
 	</table>
 	<!--  abilities  -->
 	<table border="1px" align="center" *ngFor="let ability of life.abilities,let i = index">
 		<tr *ngIf="i==0">
-			<th >nome</th>
-			<th >descrição</th>
-			<th >pagina</th>
+			<th >NAME</th>
+			<th >DESCRIPTION</th>
+			<th >PAG</th>
 		</tr>
 		
 		<tr >
 			<td rowspan="2">
-				<input  type="text" [(ngModel)]="ability.name" placeholder="nome" />
+				<input  type="text" [(ngModel)]="ability.name" placeholder="name" />
 			</td>
 			<td rowspan="2">
-				<textarea class="desc" placeholder="descrição" [(ngModel)]="ability.desc" ></textarea>
+				<textarea class="desc" placeholder="ability description" [(ngModel)]="ability.desc" ></textarea>
 			</td>
 			<td >
-				<input class="pg" type="text" [(ngModel)]="ability.pg" placeholder="livro e página" />
+				<input class="pg" type="text" [(ngModel)]="ability.pg" placeholder="book + pag" />
 				
 			</td>
 			
@@ -196,30 +198,30 @@
 	<!--  Magic  -->
 	<table border="1px" align="center" *ngFor="let magic of life.magics,let i = index">
 		<tr *ngIf="i==0">
-			<th >nome</th>
-			<th >cost</th>
-			<th >alc</th>
-			<th >ade</th>
-			<th >pod</th>
-			<th >m</th>
-			<th >off</th>
+			<th >NAME</th>
+			<th >COST</th>
+			<th >RNG</th>
+			<th >AOE</th>
+			<th >POW</th>
+			<th >UP</th>
+			<th >OFF</th>
 		</tr>
 		
 		<tr >
 			<td >
-				<input  type="text" [(ngModel)]="magic.name" placeholder="nome" />
+				<input  type="text" [(ngModel)]="magic.name" placeholder="name" />
 			</td>
 			<td >
-				<input  type="number" [(ngModel)]="magic.cost" placeholder="custo" />
+				<input  type="number" [(ngModel)]="magic.cost" placeholder="cost" />
 			</td>
 			<td >
-				<input class="pg" type="text" [(ngModel)]="magic.alc" placeholder="alcance" />
+				<input class="pg" type="text" [(ngModel)]="magic.alc" placeholder="rng" />
 			</td>
 			<td >
-				<input  type="number" [(ngModel)]="magic.ade" placeholder="Área" />
+				<input  type="number" [(ngModel)]="magic.ade" placeholder="aoe" />
 			</td>
 			<td >
-				<input  type="number" [(ngModel)]="magic.pod" placeholder="Potência" />
+				<input  type="number" [(ngModel)]="magic.pod" placeholder="pow" />
 			</td>
 			<td >
 				<input  type="checkbox" [(ngModel)]="magic.man" />
@@ -231,7 +233,7 @@
 		</tr>
 		<tr>
 			<td colspan="6">
-				<label>Note:</label><input class="inputdesc" type="text" [(ngModel)]="magic.note" placeholder="nome" />
+				<label>Note:</label><input class="inputdesc" type="text" [(ngModel)]="magic.note" placeholder="note" />
 				<button (click)="deleteMagic(magic)">x</button>
 			</td>
 		</tr>
@@ -239,9 +241,9 @@
 	</table>
 	<br>
 
-	<button (click)="save()">save</button>
+	<button (click)="save()">update</button>
 	 <button (click)="add();">
-		add
+		add new
 	  </button>
 
 </div> 

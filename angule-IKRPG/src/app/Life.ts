@@ -13,6 +13,8 @@ export class Life {
 	def:number;
 	inc:number;
 	von:number;
+	arc:number;
+	cmd:number;
 	abilities:Ability[];
 	magics:Magic[];
 }

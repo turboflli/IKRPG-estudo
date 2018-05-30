@@ -17,7 +17,7 @@ import { LifeService } from '../life.service';
 export class LifeDetailComponent implements OnInit {
 	private spirals = new Array();
 	private grid = new Array();
-	private letras :String[] = ['x','o','d','e','m','c','a','g'];
+	private letras :String[] = ['x','o','R','L','M','C','A','G'];
 	
 @Input() life: Life;
   constructor( 
@@ -49,6 +49,7 @@ export class LifeDetailComponent implements OnInit {
 	   .subscribe(() => this.goBack());
    }
   add(): void{
+	  this.life.id=undefined;
 	  this.lifeService.addLife(this.life).subscribe(life => {
 		this.life=life;
 	});

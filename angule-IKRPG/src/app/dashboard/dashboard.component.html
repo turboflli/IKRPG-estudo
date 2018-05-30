@@ -8,25 +8,29 @@
     </div>
   </a-->
   <div>
-  <input type="text" id="namefile" value="lifes">
-  <button (click)="saveTextAsFile()">Exportar lifes</button>
+  <input type="text" id="namefile" value="lifes" placeholder="Name of file">
+  <button (click)="saveTextAsFile()">Export lifes</button>
   <input type="file" id="importedfile">
-  <button (click)="readtext()">Importar lifes</button> <!--problema de sincronia-->
+  <button (click)="readtext()">Read file</button> <!--problema de sincronia-->
   <!-- não funciona <button (click)="deleteAll()">Limpar</button> -->
   <textarea class="hidden" id="arearesp"></textarea>
+  <div id="divready" class="hidden">
+  <label>Ready to load!</label>
+  <button (click)="importLifes()">Import lifes</button> <!--problema de sincronia-->
+  </div>
   <div>
   <br>
   <div>
-  <input type="number" id="inicvalue" >
+  <input type="number" id="inicvalue" placeholder="init value">
   :
-  <input type="text" id="inicname" >
-  <button (click)="addInic()">Adicionar</button>
-  <button (click)="clearInic()">Limpar</button>
+  <input type="text" id="inicname" placeholder="Name">
+  <button (click)="addInic()">add</button>
+  <button (click)="clearInic()">clean</button>
   </div>
   <br>
   <table border="1px" align="left">
   <tr>
-	<th>inic</th>
+	<th>init</th>
 	<th>name</th>
   </tr>
   <tr *ngFor="let inic of this.inics">
