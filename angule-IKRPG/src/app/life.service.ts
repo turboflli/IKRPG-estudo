@@ -64,6 +64,14 @@ deleteLife (life: Life | number): Observable<Life> {
     catchError(this.handleError<Life>('deleteLife'))
   );
 }
+/*não funcionou
+deleteAllLife (): Observable<Life[]> {
+	let term="";
+  return this.http.delete<Life[]>(`${this.lifeUrl}/?name=${term}`, this.httpOptions).pipe(
+    tap(_ => this.log(`deleted all`)),
+    catchError(this.handleError<Life[]>('deleteLife',[]))
+  );
+}*/
 
 /* GET lifes whose name contains search term */
 searchLifes(term: string): Observable<Life[]> {

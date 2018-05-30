@@ -1,5 +1,5 @@
 
-<h3>Top Mobs</h3>
+
 <div class="grid grid-pad">
   <!--a *ngFor="let life of lifes" class="col-1-4"
    routerLink="/detail/{{life.id}}">
@@ -7,9 +7,33 @@
       <h4>{{life.name}}</h4>
     </div>
   </a-->
-  <button (click)="saveTextAsFile('lifes')">Export lifes</button>
+  <div>
+  <input type="text" id="namefile" value="lifes">
+  <button (click)="saveTextAsFile()">Exportar lifes</button>
   <input type="file" id="importedfile">
-  <button (click)="readtext()">Import lifes</button>
+  <button (click)="readtext()">Importar lifes</button> <!--problema de sincronia-->
+  <!-- não funciona <button (click)="deleteAll()">Limpar</button> -->
   <textarea class="hidden" id="arearesp"></textarea>
+  <div>
+  <br>
+  <div>
+  <input type="number" id="inicvalue" >
+  :
+  <input type="text" id="inicname" >
+  <button (click)="addInic()">Adicionar</button>
+  <button (click)="clearInic()">Limpar</button>
+  </div>
+  <br>
+  <table border="1px" align="left">
+  <tr>
+	<th>inic</th>
+	<th>name</th>
+  </tr>
+  <tr *ngFor="let inic of this.inics">
+	<td >{{inic.value}}</td>
+	<td *ngFor="let name of this.inic.names">{{name}}</td>
+  </tr>
+  
+  </table>
 </div>
 <app-life-search></app-life-search>
