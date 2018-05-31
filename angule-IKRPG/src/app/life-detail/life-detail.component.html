@@ -55,7 +55,7 @@
 	<button (click)="delVitality()"><label>Remove last Vitality bar</label></button>
 	<div *ngFor="let vit of getVitalities(),let i = index">
 	
-	{{i+1}}:<input class="vitcheck" id="cb{{i}}{{c}}" (change)="vitalityup(i,c)" type="checkbox" *ngFor="let c of numerica(0,15)" [checked]="c< vit" /><label>{{vit}}</label>
+	<label class="vitcheck">{{i+1}}:</label><input class="vitcheck" id="cb{{i}}{{c}}" (change)="vitalityup(i,c)" type="checkbox" *ngFor="let c of numerica(0,15)" [checked]="c< vit" /><label class="vitcheck">{{vit}}</label>
 	
 	
 	</div>
@@ -103,7 +103,7 @@
 	</div>
 	<br>
 	<!--  field  -->
-	<input  id="cbd{{i}}" (change)="fieldup(i)" type="checkbox" *ngFor="let i of numerica(0,6)" [checked]="i< getField()" />
+	<input class="fieldcheck" id="cbd{{i}}" (change)="fieldup(i)" type="checkbox" *ngFor="let i of numerica(0,6)" [checked]="i< getField()" />
 	</div>
 	<!--  grid  -->
 	<div *ngIf="life.type === 'grid'">
@@ -118,7 +118,7 @@
 			</td>
 		</tr>
 		</table>
-		<input id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,10)" [checked]="i< getGField()"/>
+		<input class="fieldcheck" id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,10)" [checked]="i< getGField()"/>
 	</div>
 	<!--  adds  -->
 	<button (click)="addMeeleWepon()"><label>New Meele Weapon</label></button>

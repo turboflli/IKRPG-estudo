@@ -41,14 +41,14 @@ button:disabled {
 }
 .firsts {
 	float: left;
-    margin-left: 46%;
+    margin-left: 43%;
 	top: 19px;
     position: relative;
 }
 .container{
 	float: left;
-	width: 8%;
-	min-width: 113px;
+	width: 12%;
+	min-width: 222px;
 }
 .radio{
 	background-color: #a77e2d !important;
@@ -56,12 +56,12 @@ button:disabled {
 }
 .top{
 	position: relative;
-    margin-left: -20px;
+    margin-left: -25px;
 }
 .bot{
 	top: 39px;
     position: relative;
-	left: -20px;
+	left: -27px;
 }
 .agidiv{
 	height: 70px;
@@ -137,6 +137,8 @@ table button{
 	top: 12px;
     position: relative;
 
+}.vitcheck:checked {
+    background-color: #a3b1b39c;
 }
 .spirallabel {
 	top: 19px;
@@ -144,4 +146,31 @@ table button{
     position: relative;
     color: black;
     left: -45px;
+}
+
+input[type="checkbox"]{
+	width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #060606;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+.fisdiv input[type="checkbox"]:checked{
+	background-color: #aa0000bb;
+}
+.agidiv input[type="checkbox"]:checked{
+	background-color: #1b791eb0;
+}
+.intdiv input[type="checkbox"]:checked{
+	background-color: #1b30c19e;
+}
+.fieldcheck:checked{
+	background-color: #14cfe2bb;
+}
+table input[type="checkbox"]:checked{
+	background-color: #03ff24;
 }
