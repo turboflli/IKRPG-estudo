@@ -10,12 +10,14 @@ export class Life {
 	base:String;
 	melleweapons: MeeleWeapon[];
 	rangeweapons: RangeWeapon[];
+	spd:number;
 	arm:number;
 	def:number;
 	inc:number;
 	von:number;
 	arc:number;
 	cmd:number;
+	thr:number;
 	abilities:Ability[];
 	magics:Magic[];
 }
