@@ -3,7 +3,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const lifes = [
-     { id: 1, name: 'vazio', type: 'vitalidade', value: '8', arm:0, def:0, inc: 0, von: 0, arc:0, cmd:0,
+     { id: 1, name: 'vazio', type: 'vitalidade', value: '8', base:"small", arm:0, def:0, inc: 0, von: 0, arc:0, cmd:0,
 		melleweapons: [],
 		rangeweapons:[],
 		abilities:[],

@@ -7,6 +7,15 @@
     </label>
 	<br>
 	<label>
+		New Base:
+		<select  [(ngModel)]="life.base"  >
+	  <option value="small">Small</option>
+	  <option value="medium">Medium</option>
+	  <option value="large">Large</option>
+	  </select>
+	</label>
+	<br>
+	<label>
 		New Type:
 		<select (change)="setdefault()" [(ngModel)]="life.type"  >
 	  <option value="vitalidade">Vitality</option>
@@ -40,7 +49,15 @@
 	<!--input [(ngModel)]="life.value" placeholder="quantidade" /-->
 	<!--[checked]="i < life.value" não funcionou, logo tive que trapaçear-->
 	<!--  vit  -->
-	<input  id="cb{{i}}" (change)="vitalityup(i)" type="checkbox" *ngFor="let i of numerica(0,15)" [checked]="i< +life.value" />
+	<button (click)="addVitality()"><label>Add new Vitality bar</label></button>
+	<button (click)="delVitality()"><label>Remove last Vitality bar</label></button>
+	<div *ngFor="let vit of getVitalities(),let i = index">
+	
+	{{i+1}}:<input class="vitcheck" id="cb{{i}}{{c}}" (change)="vitalityup(i,c)" type="checkbox" *ngFor="let c of numerica(0,15)" [checked]="c< vit" /><label>{{vit}}</label>
+	
+	
+	</div>
+	
 	<!--input  (click)="vitalityup(this.checked)" type="checkbox" *ngFor="let i of numerica(+life.value,15)" /-->
 	</div>
 	
@@ -49,32 +66,38 @@
 	
 	<!--  Fis  -->
 	<div class="fisdiv">
+	
 	<div class="firsts">
 	<input  id="cbf{{i}}" (change)="fisup(i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getFis()" />
 	</div>
 	<div class="container">
 		<input [class.top]="i%2==0" [class.bot]="i%2==1"  id="cbf{{i}}" (change)="fisup(i)" type="checkbox" *ngFor="let i of numerica(2,16)" [checked]="i< getFis()" />
 	</div>
+	<label class="spirallabel">{{getFis()}}</label>
 	</div>
 	
 	<!--  Agi  -->
 	<div class="agidiv">
+	
 	<div class="firsts">
 	<input  id="cba{{i}}" (change)="agiup(i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getAgi()" />
 	</div>
 	<div class="container">
 		<input [class.top]="i%2==0" [class.bot]="i%2==1"  id="cba{{i}}" (change)="agiup(i)" type="checkbox" *ngFor="let i of numerica(2,16)" [checked]="i< getAgi()" />
 	</div>
+	<label class="spirallabel">{{getAgi()}}</label>
 	</div>
 	
 	<!--  Int  -->
 	<div class="intdiv">
+	
 	<div class="firsts">
 	<input class="btn-primary" id="cbi{{i}}" (change)="intup(i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getInt()" />
 	</div>
 	<div class="container">
 		<input [class.top]="i%2==0" [class.bot]="i%2==1" id="cbi{{i}}" (change)="intup(i)" type="checkbox" *ngFor="let i of numerica(2,16)" [checked]="i< getInt()" />
 	</div>
+	<label class="spirallabel">{{getInt()}}</label>
 	</div>
 	<br>
 	<!--  field  -->

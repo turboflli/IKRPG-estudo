@@ -133,3 +133,15 @@ table button{
 .inputdesc{
     width: 76%;
 }
+.vitcheck{
+	top: 12px;
+    position: relative;
+
+}
+.spirallabel {
+	top: 19px;
+    float: left;
+    position: relative;
+    color: black;
+    left: -45px;
+}

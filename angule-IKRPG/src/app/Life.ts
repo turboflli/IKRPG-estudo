@@ -7,6 +7,7 @@ export class Life {
 	name:String;
 	type: String;
 	value: String;
+	base:String;
 	melleweapons: MeeleWeapon[];
 	rangeweapons: RangeWeapon[];
 	arm:number;

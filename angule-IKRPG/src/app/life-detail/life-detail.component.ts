@@ -18,6 +18,7 @@ export class LifeDetailComponent implements OnInit {
 	private spirals = new Array();
 	private grid = new Array();
 	private letras :String[] = ['x','o','R','L','M','C','A','G'];
+	private vitalities:number[]=[];
 	
 @Input() life: Life;
   constructor( 
@@ -75,16 +76,37 @@ export class LifeDetailComponent implements OnInit {
 		return resp;
 		//return new Array(max);
 	}
-	vitalityup(i:number): void{
-		let novo=0;
-		let cb=  <HTMLInputElement>  document.getElementById("cb"+i);
-		if(cb.checked){
-			novo=(+this.life.value)+1;
-		}else{
-			novo=(+this.life.value)-1;
+	getVitalities():number[]{
+		if(this.vitalities.length<1){
+			let vits=this.life.value.split(",");
+			for(let i=0;i<vits.length;i++){
+				this.vitalities.push(+vits[i]);
+			}
 		}
-		if(novo<0){novo=1};
-		this.life.value=String(novo);
+		return this.vitalities;
+	}
+	vitalityup(i:number,c:number): void{
+		
+		let cb=  <HTMLInputElement>  document.getElementById("cb"+i+c);
+		if(cb.checked){
+			this.vitalities[i]++;
+		}else{
+			this.vitalities[i]--;
+		}
+		
+		this.life.value=this.vitalities.toString();
+	}
+	addVitality():void{
+		let n:number =this.vitalities[this.vitalities.length-1];
+		this.vitalities.push(n);
+		this.life.value+=","+n;
+	}
+	delVitality():void{
+		if(this.vitalities.length>1){
+			this.vitalities.pop();
+			this.life.value=this.life.value.substring(0,this.life.value.lastIndexOf(','));
+		}
+		
 	}
 	private checkSpiral(): void{
 		if(this.spirals.length<1){
