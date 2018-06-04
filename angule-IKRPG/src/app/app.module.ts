@@ -10,7 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
-import { LifeSearchComponent } from './life-search/life-search.component'
+import { LifeSearchComponent } from './life-search/life-search.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { LifeSearchComponent } from './life-search/life-search.component'
     LifeDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    LifeSearchComponent
+    LifeSearchComponent,
   ],
   imports: [
 	  BrowserModule,

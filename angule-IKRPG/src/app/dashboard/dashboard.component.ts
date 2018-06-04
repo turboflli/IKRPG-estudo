@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Life } from '../Life';
 import { LifeService } from '../life.service';
 import { Iniciativa } from '../iniciativa';
-
+import { IniciativaService } from '../iniciativa.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,17 +13,39 @@ export class DashboardComponent implements OnInit {
   lifes: Life[] = [];
 	inics:Iniciativa[]=[];
 	ordenedinics=new Array();
-  constructor(private lifeService: LifeService) { }
+  constructor(private lifeService: LifeService,private iniciativaService: IniciativaService) { }
 
   ngOnInit() {
     this.getLifes();
+    this.getInics();
+   
   }
-
+  private start(inics:Iniciativa[]):void{
+   for(let l=0;l<inics.length;l++){
+    	this.ordenedinics[inics[l].value]=inics[l].names;
+    }
+    this.sort();
+  }
+  private sort():void{
+ 	this.inics=[];
+	  for(let i=this.ordenedinics.length-1;i>=0;i--){
+		  if(this.ordenedinics[i]!=undefined){
+			  let names=this.ordenedinics[i];
+			  let value=i;
+			  let id=i;
+			  let newinic={id,value,names} as Iniciativa;
+			  this.inics.push(newinic);
+		  }
+	  }
+  }
   getLifes(): void {
     this.lifeService.getLifes()
       .subscribe(lifes => this.lifes = lifes);//.slice(0, 2)
   }
-  
+   getInics() {
+    this.iniciativaService.getInics()
+    .subscribe(iniciativas => this.start(iniciativas));
+  }
   saveTextAsFile ( ):void{
 	  
 	  let namefile=  <HTMLInputElement>  document.getElementById("namefile");
@@ -104,14 +126,24 @@ export class DashboardComponent implements OnInit {
 		  this.ordenedinics[+pos.value]=new Array();
 	  }
 	  this.ordenedinics[+pos.value].push(name.value);
-	  this.inics=[];
-	  for(let i=this.ordenedinics.length-1;i>=0;i--){
-		  if(this.ordenedinics[i]!=undefined){
-			  let names=this.ordenedinics[i];
-			  let value=i;
-			  this.inics.push({value,names} as Iniciativa);
-		  }
+	 this.sort();
+
+	  //não pode ficar dentro do for
+	  let names=this.ordenedinics[+pos.value];
+	  let value=+pos.value;
+	  let id=+pos.value;
+	  let newinic={id,value,names} as Iniciativa;
+	  if(names.length>1){
+	   this.iniciativaService.updateInic(newinic)
+	   .subscribe();
+	  }else{
+	  	  this.iniciativaService.addInic(newinic).subscribe(inic => {
+			newinic=inic;
+		});
 	  }
+
+
+
 	 /* let pos=  <HTMLInputElement>  document.getElementById("inicvalue");
 	  let name=  <HTMLInputElement>  document.getElementById("inicname");
 	  let has=false;
@@ -130,6 +162,9 @@ export class DashboardComponent implements OnInit {
 	  }*/
   }
   clearInic():void{
+  	  for(let l=0;l<this.inics.length;l++){
+  	  	  this.iniciativaService.deleteInic(this.inics[l].id).subscribe();
+  	  }
 	  this.inics=[];
 	  this.ordenedinics=[];
   }
