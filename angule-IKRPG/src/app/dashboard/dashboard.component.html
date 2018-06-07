@@ -34,8 +34,8 @@
 	<th>name</th>
   </tr>
   <tr *ngFor="let inic of this.inics">
-	<td >{{inic.value}}</td>
-	<td *ngFor="let name of this.inic.names">{{name}}</td>
+	<td >{{inic.id}}</td>
+	<td *ngFor="let name of inic.names">{{name}}</td>
   </tr>
   
   </table>

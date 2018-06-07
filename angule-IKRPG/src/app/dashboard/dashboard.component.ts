@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   }
   private start(inics:Iniciativa[]):void{
    for(let l=0;l<inics.length;l++){
-    	this.ordenedinics[inics[l].value]=inics[l].names;
+    	this.ordenedinics[inics[l].id]=inics[l].names;
     }
     this.sort();
   }
@@ -31,9 +31,8 @@ export class DashboardComponent implements OnInit {
 	  for(let i=this.ordenedinics.length-1;i>=0;i--){
 		  if(this.ordenedinics[i]!=undefined){
 			  let names=this.ordenedinics[i];
-			  let value=i;
 			  let id=i;
-			  let newinic={id,value,names} as Iniciativa;
+			  let newinic={id,names} as Iniciativa;
 			  this.inics.push(newinic);
 		  }
 	  }
@@ -130,9 +129,8 @@ export class DashboardComponent implements OnInit {
 
 	  //não pode ficar dentro do for
 	  let names=this.ordenedinics[+pos.value];
-	  let value=+pos.value;
 	  let id=+pos.value;
-	  let newinic={id,value,names} as Iniciativa;
+	  let newinic={id,names} as Iniciativa;
 	  if(names.length>1){
 	   this.iniciativaService.updateInic(newinic)
 	   .subscribe();

@@ -19,7 +19,7 @@
   <li *ngFor="let life of lifes;let i = index" >
   <!--[class.selected]="life === selectedLife" (click)="onSelect(life)"-->
   	
-	<a routerLink="/detail/{{life.id}}">
+	<a [routerLink]="[{outlets:{primary:['detail',life.id]}}]">
 	<span class="badge">{{life.id}}</span>
 	
 	{{life.name }}

@@ -11,6 +11,8 @@ import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { LifeSearchComponent } from './life-search/life-search.component';
+import { TutorialComponent } from './tutorial/tutorial.component';
+
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { LifeSearchComponent } from './life-search/life-search.component';
     MessagesComponent,
     DashboardComponent,
     LifeSearchComponent,
+    TutorialComponent,
   ],
   imports: [
 	  BrowserModule,
@@ -33,7 +36,9 @@ import { LifeSearchComponent } from './life-search/life-search.component';
 // Remove it when a real server is ready to receive requests.
 HttpClientInMemoryWebApiModule.forRoot(
   InMemoryDataService, { dataEncapsulation: false }
-)
+),
+
+
 	],
   providers: [],
   bootstrap: [AppComponent]

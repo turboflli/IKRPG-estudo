@@ -41,7 +41,6 @@ button:disabled {
 }
 .firsts {
 	float: left;
-    margin-left: 43%;
 	top: 19px;
     position: relative;
 }
@@ -65,15 +64,24 @@ button:disabled {
 }
 .agidiv{
 	height: 70px;
-	background: #12ff10ab;
+	background: #12ff1073;
+	margin-left: 43%;
+    width: 326px;
+    min-width: 326px;
 }
 .fisdiv{
 	height: 70px;
-	background: #e81212cc;
+	background: #e8121273;
+	margin-left: 43%;
+    width: 326px;
+    min-width: 326px;
 }
 .intdiv{
 	height: 70px;
-	background: #039be5;
+	background: #039be573;
+	margin-left: 43%;
+    width: 326px;
+    min-width: 326px;
 }
 .damaged {
 	background: red !important;;

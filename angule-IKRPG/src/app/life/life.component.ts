@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LifeService } from '../life.service';
 import { Life } from '../Life';
+import { RouterModule, Routes } from '@angular/router';
 @Component({
   selector: 'app-life',
   templateUrl: './life.component.html',

@@ -27,13 +27,13 @@ getInics(): Observable<Iniciativa[]> {
 }
 addInic (inic: Iniciativa): Observable<Iniciativa> {
   return this.http.post<Iniciativa>(this.inicUrl, inic, this.httpOptions).pipe(
-    tap((inic: Iniciativa) => this.log(`added inic w/ value=${inic.value} and names=${inic.names}`)),
+    tap((inic: Iniciativa) => this.log(`added inic w/ id=${inic.id} and names=${inic.names}`)),
     catchError(this.handleError<Iniciativa>('addInic'))
   );
 }
 updateInic (inic: Iniciativa): Observable<any> {
   return this.http.put(this.inicUrl, inic, this.httpOptions).pipe(
-    tap(_ => this.log(`updated inic value=${inic.value}`)),
+    tap(_ => this.log(`updated inic id=${inic.id}`)),
     catchError(this.handleError<any>('updateInic'))
   );
 }

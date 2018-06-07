@@ -5,13 +5,16 @@
     Welcome to {{ title }}!
   </h1>
   <nav>
-	  <a routerLink="/dashboard">Menu</a>
+ <!--<a routerLink="/dashboard">Menu</a>
 	  <a routerLink="/life">Lifes</a>
-	   <a routerLink="/detail/0">Novo</a>
+	   <a routerLink="detail/0">Novo</a>-->
+	  <a [routerLink]="[{outlets:{tutorial:'dashboard',primary:'dashboard'}}]">Menu</a>
+	  <a [routerLink]="[{outlets:{tutorial:'life',primary:'life'}}]">Lifes</a>
+	   <a [routerLink]="[{outlets:{tutorial:'detail',primary:'detail/0'}}]">Novo</a>
 	</nav>
 
-  <router-outlet></router-outlet>
-
+  <router-outlet name="primary"></router-outlet>
   <app-messages></app-messages>
+  <router-outlet name="tutorial"></router-outlet>
 
 </div>
