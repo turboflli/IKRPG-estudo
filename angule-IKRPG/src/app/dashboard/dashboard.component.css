@@ -94,3 +94,7 @@ button:hover {
   color: #039be5;
   background-color: #CFD8DC;
 }
+*:focus {
+	-webkit-animation: blink 0.85s step-end infinite alternate; 
+}
+    @-webkit-keyframes blink { 50% { border-color: aqua;background-color: aqua; }  }

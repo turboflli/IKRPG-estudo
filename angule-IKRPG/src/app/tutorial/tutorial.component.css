@@ -1,0 +1,29 @@
+label {
+  /*display: inline-block;*/
+  width: 3em;
+  margin: .5em 0;
+  color: #351cf3;
+  font-weight: bold;
+}
+h2 {
+  font-size: 1.2em;
+}
+button {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background: #00000000;
+  border-color: #00000000;
+  border-radius: 4px;
+}
+button:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+div{
+	margin-top:10px;
+}
+.right{
+	float:right;
+}

@@ -9,14 +9,14 @@
   </a-->
   <div>
   <input type="text" id="namefile" value="lifes" placeholder="Name of file">
-  <button (click)="saveTextAsFile()">Export lifes</button>
+  <button id="savebutton" (click)="saveTextAsFile()">Export lifes</button>
   <input type="file" id="importedfile">
-  <button (click)="readtext()">Read file</button> <!--problema de sincronia-->
+  <button id="readbutton" (click)="readtext()">Read file</button> <!--problema de sincronia-->
   <!-- não funciona <button (click)="deleteAll()">Limpar</button> -->
   <textarea class="hidden" id="arearesp"></textarea>
   <div id="divready" class="hidden">
   <label>Ready to load!</label>
-  <button (click)="importLifes()">Import lifes</button> <!--problema de sincronia-->
+  <button id="loadbutton" (click)="importLifes()">Import lifes</button> <!--problema de sincronia-->
   </div>
   <div>
   <br>
@@ -24,8 +24,8 @@
   <input type="number" id="inicvalue" placeholder="init value">
   :
   <input type="text" id="inicname" placeholder="Name">
-  <button (click)="addInic()">add</button>
-  <button (click)="clearInic()">clean</button>
+  <button id="inicbutton" (click)="addInic()">add</button>
+  <button id="inicclearbutton" (click)="clearInic()">clean</button>
   </div>
   <br>
   <table border="1px" align="left">

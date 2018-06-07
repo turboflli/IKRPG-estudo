@@ -13,8 +13,8 @@ const routes: Routes = [
 	  { path: 'dashboard', component: DashboardComponent,outlet:'primary'  },
 	  { path: 'life', component: TutorialComponent,outlet:'tutorial' 
 	  },
-	  { path: 'dashboard', component: TutorialComponent,outlet:'tutorial'  },
-	  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+	  { path: 'menu', component: TutorialComponent,outlet:'tutorial'  },
+	  { path: '', redirectTo: '/dashboard(tutorial:menu)', pathMatch: 'full' },
 	  { path: 'detail/:id', component: LifeDetailComponent,outlet:'primary'  },
 	  { path: 'detail', component: TutorialComponent,outlet:'tutorial'  }
 	  /*,children:[

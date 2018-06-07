@@ -18,5 +18,12 @@ export class InfoService {
 	  return this.http.get<Info>(url).pipe(
 	  );
 	}
+	
+	getInfos(aba:string): Observable<Info[]> {
+  
+   return this.http.get<Info[]>(`${this.infoUrl}/?id=${aba}`)
+    .pipe();
+}
+
   constructor( private http: HttpClient) { }
 }

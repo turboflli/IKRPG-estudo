@@ -1,3 +1,32 @@
-<p>
-  {{this.aba}}
-</p>
+<div >
+	<div>
+	<select class="right" (change)="setdefault()" [(ngModel)]="idioma"  >
+	  <option value="0">Português(Brasil)</option>
+	  <option value="1">English</option>
+	  </select>
+	<img class="right" src="assets/language.png" width="24px" height="24px"/>
+	 </div>
+	<h3><label>{{this.getInfo('oi').text[this.idioma]}} </label></h3>
+	<button *ngFor="let info of this.infos.slice(1)" (click)="focalizar(info.for)" [ngStyle]="{'width':info.width+'%'}"><label>  {{info.text[this.idioma]}}</label></button>
+	<!-- ================ MENU ================ -->
+	<!--	<div *ngIf="this.aba === 'menu'">
+		<div  >
+		<button *ngFor="let info of this.infos.slice(1)" (click)="focalizar(info.for)" [ngStyle]="{'width':info.width+'%'}"><label>  {{info.text[this.idioma]}}</label></button>
+		</div>
+		-->
+		
+	<!-- ================ LIFES ================ -->
+	<!--	<div *ngIf="this.aba === 'life'">
+		<div  >
+		<button *ngFor="let info of this.infos.slice(1)" (click)="focalizartag(info.for)" [ngStyle]="{'width':info.width+'%'}"><label>  {{info.text[this.idioma]}}</label></button>
+		</div>
+		</div>
+		-->
+		
+	<!-- ================ DETAIL ================ -->
+	<!--	<div *ngIf="this.aba === 'detail'">
+		  
+		</div>
+		-->
+		
+</div>
