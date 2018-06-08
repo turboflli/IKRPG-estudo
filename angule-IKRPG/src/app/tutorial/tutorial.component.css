@@ -9,13 +9,14 @@ h2 {
   font-size: 1.2em;
 }
 button {
-  padding: 5px 10px;
   text-decoration: none;
   margin-top: 10px;
   display: inline-block;
   background: #00000000;
   border-color: #00000000;
   border-radius: 4px;
+  position:relative;
+  
 }
 button:hover {
   color: #039be5;
@@ -26,4 +27,7 @@ div{
 }
 .right{
 	float:right;
+}
+.hidden{
+	display:none;
 }

@@ -19,8 +19,8 @@
   <li *ngFor="let life of lifes;let i = index" >
   <!--[class.selected]="life === selectedLife" (click)="onSelect(life)"-->
   	
-	<a [routerLink]="[{outlets:{primary:['detail',life.id]}}]">
-	<span class="badge">{{life.id}}</span>
+	<a id="lifelink{{i}}"[routerLink]="[{outlets:{primary:['detail',life.id]}}]">
+	<button  id="lifeid{{i}}" class="badge">{{life.id}}</button>
 	
 	{{life.name }}
 	
@@ -29,7 +29,7 @@
 	
 
 	</a>
-	<button class="delete" title="delete life"
+	<button id="lifebutton{{i}}" class="delete" title="delete life"
 	(click)="delete(life)">x</button>
 	<!--<div>
 	    <label>Novo valor:

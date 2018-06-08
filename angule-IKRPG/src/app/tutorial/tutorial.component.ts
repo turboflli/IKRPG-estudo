@@ -14,7 +14,8 @@ export class TutorialComponent implements OnInit {
 	aba:string="dashboard";
 	
 	idioma:number=0;
-	infos:Info[]=[];
+	oi:Info;
+	infosmatrix=new Array();
 	
   ngOnInit() {
 	  this.aba=this.route.snapshot.url[0].path;
@@ -22,29 +23,38 @@ export class TutorialComponent implements OnInit {
   }
 	private getInfos(aba:string):void{
 		this.infoService.getInfos(aba)
-      .subscribe(infos => this.infos = infos);
+      .subscribe(infos => this.ordenai(infos));
 	}
-	getInfo(id:string):Info{
+	/*getInfo(id:string):Info{
 		id=this.aba+id;
 		let info= this.infos.filter(i => i.id === id)[0];
 		return info;
+	}*/
+	private ordenai(infos:Info[]):void{
+		for(let i=0 ; i<infos.length ; i++){
+			if(infos[i].pos == 0){
+				this.oi=infos[i];
+			}else{
+				if(this.infosmatrix[infos[i].pos-1] == undefined){
+					this.infosmatrix[infos[i].pos-1] = new Array();
+				}
+				this.infosmatrix[infos[i].pos-1].push(infos[i]);
+			}
+		}
 	}
 	focalizar(id:string):void{
 		if(id!=''){
 			let element=  document.getElementById(id);
-			if(element==undefined){
-				document.querySelectorAll(id)[0].focus() ;
-			//element2.focus();
-			}else{
 				element.focus();
-			}
 			
 		}
 	}
-	focalizartag(tag:string):void{
-		if(tag!=''){
-			let element=  document.getElementsByTagName(tag)[0];
-			element.focus();
+	hide():void{
+		let ul=document.getElementById("ulhelp");
+		if ( ul.classList.contains('hidden') ){
+			ul.classList.remove('hidden');
+		}else{
+			ul.classList.add('hidden');
 		}
 	}
 }
