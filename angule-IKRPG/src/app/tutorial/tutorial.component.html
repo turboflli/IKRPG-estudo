@@ -6,9 +6,9 @@
 	  </select>
 	<img class="right" src="assets/language.png" width="24px" height="24px"/>
 	 </div>
-	<h3><label>{{this.oi.text[this.idioma]}} <button (click)="hide()" ><img class="right" src="assets/eye.png" width="24px" height="24px"/></button></label></h3>
+	<h3><label>{{this.oi.text[this.idioma]}} <button (click)="hide()" ><img id="hideimg" class="right" src="assets/arrow.png" width="24px" height="24px"/></button></label></h3>
 	<!--<button *ngFor="let info of this.infos.slice(1)" (click)="focalizar(info.for)" [ngStyle]="{'top':(info.pos*15)+'px','width':info.width+'%'}"><label>  {{info.text[this.idioma]}}</label></button>-->
-	<ul id="ulhelp" type="none">
+	<ul class="hidden" id="ulhelp" type="none">
 		<li *ngFor="let infos of this.infosmatrix">
 			<button *ngFor="let info of infos" (click)="focalizar(info.for)" ><label>  {{info.text[this.idioma]}}</label></button>
 		</li>

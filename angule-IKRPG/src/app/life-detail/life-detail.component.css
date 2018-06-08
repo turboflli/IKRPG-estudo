@@ -182,3 +182,7 @@ input[type="checkbox"]{
 table input[type="checkbox"]:checked{
 	background-color: #03ff24;
 }
+*:focus {
+	-webkit-animation: blink 0.85s step-end infinite alternate; 
+}
+    @-webkit-keyframes blink { 50% { border-color: green;background-color: greenyellow; }  }

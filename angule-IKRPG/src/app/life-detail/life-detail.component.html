@@ -3,12 +3,12 @@
 	<div><span>Tipo: </span>{{life.type }}</div>
 	<div><span>Total: </span>{{life.value}}</div-->
     <label>New Name:
-      <input [(ngModel)]="life.name" placeholder="name" />
+      <input id="lifename" [(ngModel)]="life.name" placeholder="name" />
     </label>
 	<br>
 	<label>
 		New Base:
-		<select  [(ngModel)]="life.base"  >
+		<select id="lifebase" [(ngModel)]="life.base"  >
 	  <option value="small">Small</option>
 	  <option value="medium">Medium</option>
 	  <option value="large">Large</option>
@@ -17,7 +17,7 @@
 	<br>
 	<label>
 		New Type:
-		<select (change)="setdefault()" [(ngModel)]="life.type"  >
+		<select id="lifetype" (change)="setdefault()" [(ngModel)]="life.type"  >
 	  <option value="vitalidade">Vitality</option>
 	  <option value="espiral">Spiral</option>
 	  <option value="grid">Warjack</option>
@@ -27,7 +27,7 @@
 	<label>
 	<!--  status  -->
 	SPD:<input type="number" [(ngModel)]="life.spd" placeholder="spd" />
-	ARM:<input type="number" [(ngModel)]="life.arm" placeholder="arm" />
+	ARM:<input id="armdemonstrativo" type="number" [(ngModel)]="life.arm" placeholder="arm" />
 	DEF:<input type="number" [(ngModel)]="life.def" placeholder="def" />
 	INIT:<input type="number" [(ngModel)]="life.inc" placeholder="init" />
 	WILL:<input type="number" [(ngModel)]="life.von" placeholder="will" />
@@ -51,8 +51,8 @@
 	<!--input [(ngModel)]="life.value" placeholder="quantidade" /-->
 	<!--[checked]="i < life.value" não funcionou, logo tive que trapaçear-->
 	<!--  vit  -->
-	<button (click)="addVitality()"><label>Add new Vitality bar</label></button>
-	<button (click)="delVitality()"><label>Remove last Vitality bar</label></button>
+	<button id="addvitbar" (click)="addVitality()"><label>Add new Vitality bar</label></button>
+	<button id="removevitbar" (click)="delVitality()"><label>Remove last Vitality bar</label></button>
 	<div *ngFor="let vit of getVitalities(),let i = index">
 	
 	<label class="vitcheck">{{i+1}}:</label><input class="vitcheck" id="cb{{i}}{{c}}" (change)="vitalityup(i,c)" type="checkbox" *ngFor="let c of numerica(0,15)" [checked]="c< vit" /><label class="vitcheck">{{vit}}</label>
@@ -108,7 +108,7 @@
 	<!--  grid  -->
 	<div *ngIf="life.type === 'grid'">
 	
-		<table  align="center" class="tablegrid" style="background-image: url(assets/grid.png)">
+		<table   align="center" class="tablegrid" style="background-image: url(assets/grid.png)">
 		<tr class="gridcomp">
 			<th *ngFor="let i of numerica(0,6)"></th>
 		</tr>
@@ -121,75 +121,76 @@
 		<input class="fieldcheck" id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,10)" [checked]="i< getGField()"/>
 	</div>
 	<!--  adds  -->
-	<button (click)="addMeeleWepon()"><label>New Meele Weapon</label></button>
-	<button (click)="addRageWepon()"><label>New Range Weapon</label></button>
-	<button (click)="addAbility()"><label>New Ability</label></button>
-	<button (click)="addMagic()"><label>New Magic</label></button>
+	<br>
+	<button id="addmeele" (click)="addMeeleWepon()"><label>New Meele Weapon</label></button>
+	<button id="addrange" (click)="addRageWepon()"><label>New Range Weapon</label></button>
+	<button id="addability" (click)="addAbility()"><label>New Ability</label></button>
+	<button id="addmagic" (click)="addMagic()"><label>New Magic</label></button>
 	<br>
 	<!--  weapons  -->
 	<!--  meele weapons  -->
 	<!--align="{{wep.local == 'd' ? 'right' : wep.local == 'e' ? 'left' : 'center' }}"-->
-	<table border="1px" align="center" *ngFor="let wep of life.melleweapons">
+	<table border="1px" align="center" *ngFor="let wep of life.melleweapons,let i = index">
 	<tr>
 		<th colspan="4">
-		<input [(ngModel)]="wep.name" placeholder="name" />
-		<button (click)="deleteMeeleWeapon(wep)">Remove</button>
+		<input id="mlname{{i}}" [(ngModel)]="wep.name" placeholder="name" />
+		<button id="mldel{{i}}" (click)="deleteMeeleWeapon(wep)">Remove</button>
 		</th>
 	</tr>
 	<tr>
 		<td>
 		<img src="assets/meele.png" />
 		
-		<input class="local" type="text" [(ngModel)]="wep.local" />
+		<input id="mllocal{{i}}" class="local" type="text" [(ngModel)]="wep.local" />
 		</td>
 		<td>
-		MAT:<input type="number" [(ngModel)]="wep.hit" placeholder="mat" />
+		MAT:<input id="mlhit{{i}}" type="number" [(ngModel)]="wep.hit" placeholder="mat" />
 		</td>
 		<td>
-		POW:<input type="number" [(ngModel)]="wep.pod" placeholder="pow" />
+		POW:<input id="mlpod{{i}}" type="number" [(ngModel)]="wep.pod" placeholder="pow" />
 		</td>
 		<td>
-		S+P:<input type="number" [(ngModel)]="wep.pf" placeholder="s + p" />
+		S+P:<input id="mlpf{{i}}" type="number" [(ngModel)]="wep.pf" placeholder="s + p" />
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4">Note:<input class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
+		<td colspan="4">Note:<input id="mlnt{{i}}" class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
 	</tr>
 	</table>
 	<!--  range weapons  -->
 	<!--align="{{wep.local == 'd' ? 'right' : wep.local == 'e' ? 'left' : 'center' }}"-->
-	<table border="1px" align="center" *ngFor="let wep of life.rangeweapons">
+	<table border="1px" align="center" *ngFor="let wep of life.rangeweapons,let i = index">
 	<tr>
 		<th colspan="6">
-		<input [(ngModel)]="wep.name" placeholder="name" />
-		<button (click)="deleteRangeWeapon(wep)">Remove</button>
+		<input id="rgname{{i}}" [(ngModel)]="wep.name" placeholder="name" />
+		<button id="rgdel{{i}}" (click)="deleteRangeWeapon(wep)">Remove</button>
 		</th>
 	</tr>
 	<tr>
 		<td>
 		<img src="assets/range.png" />
-		<input class="local" type="text" [(ngModel)]="wep.local" />
+		<input id="rglocal{{i}}" class="local" type="text" [(ngModel)]="wep.local" />
 		</td>
 		<td>
-		RAT:<input type="number" [(ngModel)]="wep.hit" placeholder="rat" />
+		RAT:<input id="rghit{{i}}"  type="number" [(ngModel)]="wep.hit" placeholder="rat" />
 		</td>
 		<td>
-		RNG:<input type="number" [(ngModel)]="wep.alc" placeholder="rng" />
+		RNG:<input id="rgalc{{i}}" type="number" [(ngModel)]="wep.alc" placeholder="rng" />
 		</td>
 		<td>
-		ROF:<input type="number" [(ngModel)]="wep.munition" placeholder="rof" />
+		ROF:<input id="rgrof{{i}}" type="number" [(ngModel)]="wep.munition" placeholder="rof" />
 		</td>
 		<td>
-		AOE:<input type="number" [(ngModel)]="wep.ade" placeholder="aoe" />
+		AOE:<input id="rgade{{i}}" type="number" [(ngModel)]="wep.ade" placeholder="aoe" />
 		</td>
 		<td>
-		POW:<input type="number" [(ngModel)]="wep.pod" placeholder="pow" />
+		POW:<input id="rgpod{{i}}" type="number" [(ngModel)]="wep.pod" placeholder="pow" />
 		</td>
 		
 		
 	</tr>
 	<tr>
-		<td colspan="6">Note:<input class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
+		<td colspan="6">Note:<input id="rgnt{{i}}" class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
 	</tr>
 	</table>
 	<!--  abilities  -->
@@ -202,20 +203,20 @@
 		
 		<tr >
 			<td rowspan="2">
-				<input  type="text" [(ngModel)]="ability.name" placeholder="name" />
+				<input id="abname{{i}}" type="text" [(ngModel)]="ability.name" placeholder="name" />
 			</td>
 			<td rowspan="2">
-				<textarea class="desc" placeholder="ability description" [(ngModel)]="ability.desc" ></textarea>
+				<textarea id="abdesc{{i}}" class="desc" placeholder="ability description" [(ngModel)]="ability.desc" ></textarea>
 			</td>
 			<td >
-				<input class="pg" type="text" [(ngModel)]="ability.pg" placeholder="book + pag" />
+				<input id="abpg{{i}}" class="pg" type="text" [(ngModel)]="ability.pg" placeholder="book + pag" />
 				
 			</td>
 			
 		</tr>
 		<tr>
 			<td>
-				<button (click)="deleteAbility(ability)">x</button>
+				<button id="abdel{{i}}" (click)="deleteAbility(ability)">x</button>
 			</td>
 		</tr>
 	
@@ -234,32 +235,32 @@
 		
 		<tr >
 			<td >
-				<input  type="text" [(ngModel)]="magic.name" placeholder="name" />
+				<input id="mgname{{i}}"  type="text" [(ngModel)]="magic.name" placeholder="name" />
 			</td>
 			<td >
-				<input  type="number" [(ngModel)]="magic.cost" placeholder="cost" />
+				<input id="mgcost{{i}}"  type="number" [(ngModel)]="magic.cost" placeholder="cost" />
 			</td>
 			<td >
-				<input class="pg" type="text" [(ngModel)]="magic.alc" placeholder="rng" />
+				<input id="mgalc{{i}}" class="pg" type="text" [(ngModel)]="magic.alc" placeholder="rng" />
 			</td>
 			<td >
-				<input  type="number" [(ngModel)]="magic.ade" placeholder="aoe" />
+				<input id="mgade{{i}}"  type="number" [(ngModel)]="magic.ade" placeholder="aoe" />
 			</td>
 			<td >
-				<input  type="number" [(ngModel)]="magic.pod" placeholder="pow" />
+				<input id="mgpod{{i}}"  type="number" [(ngModel)]="magic.pod" placeholder="pow" />
 			</td>
 			<td >
-				<input  type="checkbox" [(ngModel)]="magic.man" />
+				<input id="mgnman{{i}}"  type="checkbox" [(ngModel)]="magic.man" />
 			</td>
 			<td >
-				<input  type="checkbox" [(ngModel)]="magic.off" />
+				<input id="mgoff{{i}}"  type="checkbox" [(ngModel)]="magic.off" />
 			</td>
 			
 		</tr>
 		<tr>
 			<td colspan="6">
-				<label>Note:</label><input class="inputdesc" type="text" [(ngModel)]="magic.note" placeholder="note" />
-				<button (click)="deleteMagic(magic)">x</button>
+				<label>Note:</label><input id="mgnt{{i}}" class="inputdesc" type="text" [(ngModel)]="magic.note" placeholder="note" />
+				<button id="mgdel{{i}}" (click)="deleteMagic(magic)">x</button>
 			</td>
 		</tr>
 	

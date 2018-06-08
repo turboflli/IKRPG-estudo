@@ -28,7 +28,13 @@ nav a.active {
   color: #039be5;
 }
 div {
- background-color: #f0f8ffd6;
-     height: auto;
-    min-height: -webkit-fill-available;
+ background-color: #f0f8ffea;
+    height: auto;
+    min-height: fit-content;
+	text-align: center;
+    width: fit-content;
+	border: 7px solid #86603b;
+    border-radius: 15px;
+	margin: auto;
+	padding: 17px;
 }

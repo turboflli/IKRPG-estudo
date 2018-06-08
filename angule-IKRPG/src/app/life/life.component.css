@@ -1,4 +1,7 @@
 /* lifesComponent's private CSS styles */
+div{
+	text-align: -webkit-center;
+}
 .lifes {
   margin: 0 0 2em 0;
   list-style-type: none;
@@ -43,7 +46,7 @@
   background-color: #607D8B;
   line-height: 1em;
   position: relative;
-  /*left: -1px;*/
+  left: -7px;
   top: -3px;
   height: 1.8em;
   min-width: 16px;
@@ -83,4 +86,4 @@ label:hover {
 *:focus {
 	-webkit-animation: blink 0.85s step-end infinite alternate; 
 }
-    @-webkit-keyframes blink { 50% { border-color: aqua;background-color: aqua; }  }
+    @-webkit-keyframes blink { 50% { border-color: greenyellow;background-color: greenyellow; }  }

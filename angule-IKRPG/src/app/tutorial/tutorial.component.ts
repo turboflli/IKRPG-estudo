@@ -45,16 +45,21 @@ export class TutorialComponent implements OnInit {
 	focalizar(id:string):void{
 		if(id!=''){
 			let element=  document.getElementById(id);
-				element.focus();
-			
+				if(element != undefined){
+					element.focus();
+				}
 		}
 	}
 	hide():void{
 		let ul=document.getElementById("ulhelp");
+		let img= <HTMLImageElement> document.getElementById("hideimg");
+		
 		if ( ul.classList.contains('hidden') ){
 			ul.classList.remove('hidden');
+			img.src="assets/open.png";
 		}else{
 			ul.classList.add('hidden');
+			img.src="assets/arrow.png";
 		}
 	}
 }
