@@ -22,8 +22,11 @@ button {
   
 }
 button:hover {
-  color: #039be5;
-  background-color: #CFD8DC;
+  
+  background-color: aliceblue;
+  border-width: 2px;
+  border-color: yellow;
+  border-style: dashed;
 }
 div{
 	margin-top:10px;
