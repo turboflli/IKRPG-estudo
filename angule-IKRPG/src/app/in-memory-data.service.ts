@@ -305,11 +305,11 @@ export class InMemoryDataService implements InMemoryDbService {
 		{id:'detailmgman',text:[
 		'manutenção',
 		'upkeep'
-		],for:'rgman0',pos:9},
+		],for:'mgman0',pos:9},
 		{id:'detailmgoff',text:[
 		'ofensiva',
 		'offensive'
-		],for:'mgodd0',pos:9},
+		],for:'mgoff0',pos:9},
 		{id:'detailmgnt',text:[
 		'notas',
 		'notes'

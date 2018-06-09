@@ -62,24 +62,24 @@ button:disabled {
     position: relative;
 	left: -27px;
 }
-.agidiv{
+.fisdiv{
 	height: 70px;
-	background: #12ff1073;
-	margin-left: 43%;
+	background: #039be573;
+	margin: auto;
     width: 326px;
     min-width: 326px;
 }
-.fisdiv{
+.agidiv{
 	height: 70px;
 	background: #e8121273;
-	margin-left: 43%;
+	margin: auto;
     width: 326px;
     min-width: 326px;
 }
 .intdiv{
 	height: 70px;
-	background: #039be573;
-	margin-left: 43%;
+	background: #12ff1073;
+	margin: auto;
     width: 326px;
     min-width: 326px;
 }
@@ -168,13 +168,13 @@ input[type="checkbox"]{
     cursor: pointer;
 }
 .fisdiv input[type="checkbox"]:checked{
-	background-color: #aa0000bb;
+	background-color: #1b30c19e;
 }
 .agidiv input[type="checkbox"]:checked{
-	background-color: #1b791eb0;
+	background-color: #aa0000bb;
 }
 .intdiv input[type="checkbox"]:checked{
-	background-color: #1b30c19e;
+	background-color: #1b791eb0;
 }
 .fieldcheck:checked{
 	background-color: #14cfe2bb;
@@ -182,7 +182,7 @@ input[type="checkbox"]{
 table input[type="checkbox"]:checked{
 	background-color: #03ff24;
 }
-*:focus {
+.focus {
 	-webkit-animation: blink 0.85s step-end infinite alternate; 
 }
     @-webkit-keyframes blink { 50% { border-color: green;background-color: greenyellow; }  }

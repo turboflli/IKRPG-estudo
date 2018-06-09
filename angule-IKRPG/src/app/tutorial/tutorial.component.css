@@ -5,8 +5,11 @@ label {
   color: #351cf3;
   font-weight: bold;
 }
-h2 {
-  font-size: 1.2em;
+h3 {
+  margin-left: 14px;
+}
+img{
+	margin-left: 10px;
 }
 button {
   text-decoration: none;
@@ -25,6 +28,7 @@ button:hover {
 div{
 	margin-top:10px;
 	width: fit-content;
+	margin-left: 14px;
 }
 .right{
 	float:right;

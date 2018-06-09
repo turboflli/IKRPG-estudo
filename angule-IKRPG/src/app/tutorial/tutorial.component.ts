@@ -46,7 +46,11 @@ export class TutorialComponent implements OnInit {
 		if(id!=''){
 			let element=  document.getElementById(id);
 				if(element != undefined){
-					element.focus();
+					element.focus()
+					element.classList.add('focus');
+					element.onblur=function(){
+						this.classList.remove('focus');
+					}
 				}
 		}
 	}

@@ -83,7 +83,7 @@ label:hover {
 	border-color: aqua;background-color: aqua !important;
 }
 
-*:focus {
+.focus {
 	-webkit-animation: blink 0.85s step-end infinite alternate; 
 }
     @-webkit-keyframes blink { 50% { border-color: greenyellow;background-color: greenyellow; }  }

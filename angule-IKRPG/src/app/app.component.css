@@ -1,8 +1,11 @@
 /* AppComponent's private CSS styles */
 h1 {
-  font-size: 1.2em;
-  color: #333;
-  margin-bottom: 0;
+    font-size: 12px/*1.2em*/;
+    color: #000;
+    margin-bottom: 0;
+    position: relative;
+	margin-top: 13px;
+    margin-left: 95px;
 }
 h2 {
   font-size: 2em;
@@ -27,14 +30,50 @@ nav a:hover {
 nav a.active {
   color: #039be5;
 }
-div {
+.div {
  background-color: #f0f8ffea;
-    height: auto;
+    height: 330px/*auto*/;
+	overflow:auto;
     min-height: fit-content;
 	text-align: center;
-    width: fit-content;
-	border: 7px solid #86603b;
-    border-radius: 15px;
+    width: /*fit-content*/500px;
+	/*border: 7px solid #333;
+    border-radius: 15px;*/
+	    border: 10px solid transparent;
+    padding: 55px;
+	/*border-image-source: url(assets/border.png)*/
+	border-image-slice: 137 0 193 0;
+    border-image-width: 279px 0px 349px 0px;
+	border-image-outset: 0px 0px 0px 0px;
+	border-image-repeat: stretch stretch;
 	margin: auto;
-	padding: 17px;
+}
+.divout{
+	/*background:url(assets/border.png) não funciona aqui;
+	background-size: cover; não funciona aqui
+	background-color: #f0f8ffea; não funciona aqui*/
+    height: 660px;
+    margin: auto;
+    width: 1000px;
+    overflow: auto;
+}
+.divin{
+	height: 605px;
+    overflow: auto;
+    position: relative;
+    text-align: center;
+    width: 913px;
+    margin: auto;
+}
+::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #cccccc00;
+  outline: 1px solid slategrey;
 }
