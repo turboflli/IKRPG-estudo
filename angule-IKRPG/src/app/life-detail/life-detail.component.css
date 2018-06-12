@@ -49,6 +49,17 @@ button:disabled {
 	width: 12%;
 	min-width: 222px;
 }
+.containerhuge{
+	width: 75% !important;
+}
+.hugespiral{
+	    width: 428px !important;
+}    
+.containervitality{
+	height: 75px;
+    width: 580px;
+    margin: auto;
+	}
 .radio{
 	background-color: #a77e2d !important;
   color: #ffffff !important;
@@ -62,6 +73,7 @@ button:disabled {
     position: relative;
 	left: -27px;
 }
+
 .fisdiv{
 	height: 70px;
 	background: #039be573;
@@ -121,12 +133,21 @@ table button{
 .gridcomp{
 	height: 25px;
 }
+.divgrid{
+	display: inline-flex
+}
 .tablegrid{
 	/*background-image: url(assets/grid.png);*/
     /*background-size: cover;*/
 	width: 254px;
     height: 269px;
 	background-size: cover;
+}
+.tr{
+	height: 38px;
+}
+.th{
+	height: 25px;
 }
 .gridbuton{
 	border-radius: 0px;
@@ -182,7 +203,13 @@ input[type="checkbox"]{
 table input[type="checkbox"]:checked{
 	background-color: #03ff24;
 }
+.divflex{
+	display:flex;
+    flex-wrap: wrap;
+	justify-content: center;
+}
 .focus {
 	-webkit-animation: blink 0.85s step-end infinite alternate; 
 }
     @-webkit-keyframes blink { 50% { border-color: green;background-color: greenyellow; }  }
+	

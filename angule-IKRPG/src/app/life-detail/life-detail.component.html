@@ -8,10 +8,11 @@
 	<br>
 	<label>
 		New Base:
-		<select id="lifebase" [(ngModel)]="life.base"  >
+		<select id="lifebase" (change)="noMultipleBattleEngine()" [(ngModel)]="life.base"  >
 	  <option value="small">Small</option>
 	  <option value="medium">Medium</option>
 	  <option value="large">Large</option>
+	  <option value="huge">Huge</option>
 	  </select>
 	</label>
 	<br>
@@ -52,12 +53,15 @@
 	<!--input [(ngModel)]="life.value" placeholder="quantidade" /-->
 	<!--[checked]="i < life.value" não funcionou, logo tive que trapaçear-->
 	<!--  vit  -->
-	<button id="addvitbar" (click)="addVitality()"><label>Add new Vitality bar</label></button>
-	<button id="removevitbar" (click)="delVitality()"><label>Remove last Vitality bar</label></button>
+	<button *ngIf="life.base !== 'huge'" id="addvitbar" (click)="addVitality()"><label>Add new Vitality bar</label></button>
+	<button *ngIf="life.base !== 'huge'" id="removevitbar" (click)="delVitality()"><label>Remove last Vitality bar</label></button>
 	<div *ngFor="let vit of getVitalities(),let i = index">
 	
-	<label class="vitcheck">{{i+1}}:</label><input class="vitcheck" id="cb{{i}}{{c}}" (change)="vitalityup(i,c)" type="checkbox" *ngFor="let c of numerica(0,15)" [checked]="c< vit" /><label class="vitcheck">{{vit}}</label>
 	
+	<div  [class.containervitality]="life.base === 'huge'">
+	<label *ngIf="life.base !== 'huge'" class="vitcheck">{{i+1}}:</label>
+	<input  class="vitcheck" id="cb{{i}}{{c}}" (change)="vitalityup(i,c)" type="checkbox" *ngFor="let c of numerica(0,(life.base === 'huge' ? 40 : 15))" [checked]="c< vit" /><label class="vitcheck">{{vit}}</label>
+	</div>
 	
 	</div>
 	
@@ -68,47 +72,50 @@
 	
 	
 	<!--  Fis  -->
-	<div class="fisdiv">
+	<div [class.hugespiral]="life.base == 'huge'" class="fisdiv">
 	
 	<div class="firsts">
 	<input  id="cbf{{i}}" (change)="fisup(i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getFis()" />
 	</div>
-	<div class="container">
-		<input [class.top]="i%2==0" [class.bot]="i%2==1"  id="cbf{{i}}" (change)="fisup(i)" type="checkbox" *ngFor="let i of numerica(2,16)" [checked]="i< getFis()" />
+	<div [class.containerhuge]="life.base == 'huge'" class="container">
+		<input [class.top]="i%2==0" [class.bot]="i%2==1"  id="cbf{{i}}" (change)="fisup(i)" type="checkbox" *ngFor="let i of numerica(2,(life.base === 'huge' ? 24 : 16))" [checked]="i< getFis()" />
 	</div>
 	<label class="spirallabel">{{getFis()}}</label>
 	</div>
 	
 	<!--  Agi  -->
-	<div class="agidiv">
+	<div [class.hugespiral]="life.base == 'huge'" class="agidiv">
 	
 	<div class="firsts">
 	<input  id="cba{{i}}" (change)="agiup(i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getAgi()" />
 	</div>
-	<div class="container">
-		<input [class.top]="i%2==0" [class.bot]="i%2==1"  id="cba{{i}}" (change)="agiup(i)" type="checkbox" *ngFor="let i of numerica(2,16)" [checked]="i< getAgi()" />
+	<div [class.containerhuge]="life.base == 'huge'" class="container">
+		<input [class.top]="i%2==0" [class.bot]="i%2==1"  id="cba{{i}}" (change)="agiup(i)" type="checkbox" *ngFor="let i of numerica(2,(life.base === 'huge' ? 24 : 16))" [checked]="i< getAgi()" />
 	</div>
 	<label class="spirallabel">{{getAgi()}}</label>
 	</div>
 	
 	<!--  Int  -->
-	<div class="intdiv">
+	<div [class.hugespiral]="life.base == 'huge'" class="intdiv">
 	
 	<div class="firsts">
 	<input class="btn-primary" id="cbi{{i}}" (change)="intup(i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getInt()" />
 	</div>
-	<div class="container">
-		<input [class.top]="i%2==0" [class.bot]="i%2==1" id="cbi{{i}}" (change)="intup(i)" type="checkbox" *ngFor="let i of numerica(2,16)" [checked]="i< getInt()" />
+	<div [class.containerhuge]="life.base == 'huge'" class="container">
+		<input [class.top]="i%2==0" [class.bot]="i%2==1" id="cbi{{i}}" (change)="intup(i)" type="checkbox" *ngFor="let i of numerica(2,(life.base === 'huge' ? 24 : 16))" [checked]="i< getInt()" />
 	</div>
 	<label class="spirallabel">{{getInt()}}</label>
 	</div>
 	<br>
 	<!--  field  -->
-	<input class="fieldcheck" id="cbd{{i}}" (change)="fieldup(i)" type="checkbox" *ngFor="let i of numerica(0,6)" [checked]="i< getField()" />
+		<div *ngIf="life.base !== 'huge'">
+		<input class="fieldcheck" id="cbd{{i}}" (change)="fieldup(i)" type="checkbox" *ngFor="let i of numerica(0,6)" [checked]="i< getField()" />
+		</div>
 	</div>
 	<!--  grid  -->
-	<div *ngIf="life.type === 'grid'">
-	
+	<br>
+	<div class="divgrid" *ngIf="life.type === 'grid'">
+		
 		<table   align="center" class="tablegrid" style="background-image: url(assets/grid.png)">
 		<tr class="gridcomp">
 			<th *ngFor="let i of numerica(0,6)"></th>
@@ -119,7 +126,24 @@
 			</td>
 		</tr>
 		</table>
-		<input class="fieldcheck" id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,10)" [checked]="i< getGField()"/>
+		
+		<!--colossal-->
+		<br>
+		<table *ngIf="life.base === 'huge'" align="center" class="tablegrid" style="background-image: url(assets/grid.png)">
+		<tr class="gridcomp" >
+			<th *ngFor="let i of numerica(0,6)"></th>
+		</tr>
+		<tr  *ngFor="let l of numerica(7,13)">
+			<td *ngFor="let letra of getColumn(l),let x = index">
+				<button class="gridcomp gridbuton" id="btn{{l}}{{x}}" [class.damaged]="letra.indexOf('.')!=-1" [class.offgrid]="letra.indexOf('x')!=-1" [class.bodygrid]="letra.indexOf('o')!=-1" (click)="callchoice($event)">{{letra[0]}}</button>
+			</td>
+		</tr>
+		</table>
+		
+		
+	</div>
+	<div  *ngIf="life.type === 'grid'">
+	<input class="fieldcheck" id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,((life.base === 'huge' || life.base === 'large') ? 12 :  6))" [checked]="i< getGField()"/>
 	</div>
 	<!--  adds  -->
 	<br>
@@ -131,7 +155,9 @@
 	<!--  weapons  -->
 	<!--  meele weapons  -->
 	<!--align="{{wep.local == 'd' ? 'right' : wep.local == 'e' ? 'left' : 'center' }}"-->
-	<table border="1px" align="center" *ngFor="let wep of life.melleweapons,let i = index">
+	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: center;">
+	<div   *ngFor="let wep of life.melleweapons,let i = index"> <!--align="center"-->
+	<table border="1px">
 	<tr>
 		<th colspan="4">
 		<input id="mlname{{i}}" [(ngModel)]="wep.name" placeholder="name" />
@@ -158,8 +184,11 @@
 		<td colspan="4">Note:<input id="mlnt{{i}}" class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
 	</tr>
 	</table>
+	</div>
+	</div>
 	<!--  range weapons  -->
 	<!--align="{{wep.local == 'd' ? 'right' : wep.local == 'e' ? 'left' : 'center' }}"-->
+	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: center;">
 	<table border="1px" align="center" *ngFor="let wep of life.rangeweapons,let i = index">
 	<tr>
 		<th colspan="6">
@@ -194,7 +223,9 @@
 		<td colspan="6">Note:<input id="rgnt{{i}}" class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
 	</tr>
 	</table>
+	</div>
 	<!--  abilities  -->
+	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: center;">
 	<table border="1px" align="center" *ngFor="let ability of life.abilities,let i = index">
 		<tr *ngIf="i==0">
 			<th >NAME</th>
@@ -222,7 +253,9 @@
 		</tr>
 	
 	</table>
+	</div>
 	<!--  Magic  -->
+	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: center;">
 	<table border="1px" align="center" *ngFor="let magic of life.magics,let i = index">
 		<tr *ngIf="i==0">
 			<th >NAME</th>
@@ -266,6 +299,7 @@
 		</tr>
 	
 	</table>
+	</div>
 	<br>
 
 	<button (click)="save()">update</button>

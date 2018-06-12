@@ -17,7 +17,7 @@ import { LifeService } from '../life.service';
 export class LifeDetailComponent implements OnInit {
 	private spirals = new Array();
 	private grid = new Array();
-	private letras :String[] = ['x','o','R','L','M','C','A','G'];
+	private letras :String[] = ['x','o','R','L','M','C','A','G','S'];
 	private vitalities:number[]=[];
 	
 @Input() life: Life;
@@ -64,7 +64,14 @@ export class LifeDetailComponent implements OnInit {
 		}else if(this.life.type=='espiral'){
 			this.life.value='0,0,0';
 		}else{
-			this.life.value='o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;0';
+			this.life.value='o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;0;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o';
+		}
+	}
+	noMultipleBattleEngine():void{
+		if(this.life.type=='vitalidade' && this.life.type=='huge'){
+			while(this.vitalities.length>1){
+				this.vitalities.pop();
+			}
 		}
 	}
 	numerica(start:number, max:number): number[]{
@@ -216,7 +223,16 @@ export class LifeDetailComponent implements OnInit {
 		}else{
 			position++;
 		}
-		this.grid[l][c]=this.letras[position];
+		let lt=this.letras[position]
+		if(this.life.base=='huge'){
+			if(l<6 && lt=='R'){
+				lt="M";
+			}
+			if(l>6 && lt=='L'){
+				lt="M";
+			}
+		}
+		this.grid[l][c]=lt;
 		this.savegrid();
 	}
 	private savegrid(): void{
@@ -232,7 +248,24 @@ export class LifeDetailComponent implements OnInit {
 				novo+=";";
 			}
 		}
-		this.life.value=novo+";"+this.grid[6][0];
+		let secondnovo='';
+		if(this.life.base=='huge'){
+					for(let l=7;l<12;l++){
+			for(let c=7;c<12;c++){
+				secondnovo+=this.grid[l][c];
+				if(c<11){
+					secondnovo+=",";
+				}
+			}
+			if(l<11){
+				secondnovo+=";";
+			}
+		}
+		}else{
+			secondnovo=";o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o"
+		}
+
+		this.life.value=novo+";"+this.grid[6][0]+secondnovo;
 	}
 	damageButton(l:number,c:number): void{
 		if(this.grid[l][c].indexOf('.')!=-1){
@@ -250,8 +283,16 @@ export class LifeDetailComponent implements OnInit {
 	}
 	callchoice(e){
 		let temp=e.srcElement.id.substring(3).split('');
-		let l=+temp[0];
-		let c=+temp[1];
+		let l=0;
+		let c=0;
+		if(temp.length==3){
+			l=+temp.substring(0,2);
+			c=+temp[2];
+		}else{
+			l=+temp[0];
+			c=+temp[1];
+		}
+		
 		if(e.shiftKey || e.ctrlKey){
 			this.damageButton(l,c);
 		}else{

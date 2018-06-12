@@ -122,13 +122,17 @@ export class InMemoryDataService implements InMemoryDbService {
 		],for:'armdemonstrativo',pos:2},
 		
 		//vitalidade
+		{id:'detailvithuge',text:[
+		'se for uma maquina de guerra você não pode adicionar barras de vitalidade',
+		'if is a battle engine you can\'t add vitality bars'
+		],for:'lifebase',pos:3},
 		{id:'detailvitadd',text:[
-		'para adicionar uma barra de vitalidade para seus mobs',
-		'to add a vitality bar for your mobs'
+		'se for mob você pode ',
+		'if is a mob you can '
 		],for:'addvitbar',pos:3},
 		{id:'detailvitdel',text:[
-		'ou remover uma barra de vitalidade',
-		'or remove a vitality bar'
+		'ou remove=la',
+		'or remove it'
 		],for:'removevitbar',pos:3},
 		{id:'detailvit',text:[
 		'controle a quantidade de vida clicando nos circulos',
