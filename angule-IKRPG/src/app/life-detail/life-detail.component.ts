@@ -281,6 +281,13 @@ export class LifeDetailComponent implements OnInit {
 			btn.classList.add('damaged');
 		}*/
 	}
+	getBorder(i:number):number{
+		i++;
+		if(i%2==1){
+			i++;
+		}
+		return (i/2);
+	}
 	callchoice(e){
 		let temp=e.srcElement.id.substring(3).split('');
 		let l=0;

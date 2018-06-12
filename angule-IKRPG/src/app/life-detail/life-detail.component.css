@@ -125,10 +125,16 @@ table button{
     color: brown;
 }
 .pg{
-	width: 64px;
+	width: 50px;
+}
+.name{
+	width: 160px;
 }
 .desc{
-	height: 59px;
+	height: 63px;
+    width: 180px;
+    position: relative;
+    margin-bottom: -4px;
 }
 .gridcomp{
 	height: 25px;
@@ -207,6 +213,14 @@ table input[type="checkbox"]:checked{
 	display:flex;
     flex-wrap: wrap;
 	justify-content: center;
+}
+.rightwep{
+	
+	margin-left: auto;
+}
+.leftwep{
+	
+	margin-right: auto;
 }
 .focus {
 	-webkit-animation: blink 0.85s step-end infinite alternate; 

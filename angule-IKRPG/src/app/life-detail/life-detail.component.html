@@ -155,9 +155,9 @@
 	<!--  weapons  -->
 	<!--  meele weapons  -->
 	<!--align="{{wep.local == 'd' ? 'right' : wep.local == 'e' ? 'left' : 'center' }}"-->
-	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: center;">
-	<div   *ngFor="let wep of life.melleweapons,let i = index"> <!--align="center"-->
-	<table border="1px">
+	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: space-around;">
+	<!--																																								Math.round não funciona-->
+	<table [class.rightwep]="(wep.local | uppercase)=='R'" [class.leftwep]="(wep.local | uppercase)=='L'" *ngFor="let wep of life.melleweapons,let i = index" [ngStyle]="{'order':getBorder(i)}" border="1px">
 	<tr>
 		<th colspan="4">
 		<input id="mlname{{i}}" [(ngModel)]="wep.name" placeholder="name" />
@@ -184,12 +184,12 @@
 		<td colspan="4">Note:<input id="mlnt{{i}}" class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
 	</tr>
 	</table>
-	</div>
+	
 	</div>
 	<!--  range weapons  -->
 	<!--align="{{wep.local == 'd' ? 'right' : wep.local == 'e' ? 'left' : 'center' }}"-->
-	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: center;">
-	<table border="1px" align="center" *ngFor="let wep of life.rangeweapons,let i = index">
+	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: space-around;">
+	<table [class.rightwep]="(wep.local | uppercase)=='R'" [class.leftwep]="(wep.local | uppercase)=='L'" border="1px" *ngFor="let wep of life.rangeweapons,let i = index">
 	<tr>
 		<th colspan="6">
 		<input id="rgname{{i}}" [(ngModel)]="wep.name" placeholder="name" />
@@ -225,9 +225,9 @@
 	</table>
 	</div>
 	<!--  abilities  -->
-	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: center;">
-	<table border="1px" align="center" *ngFor="let ability of life.abilities,let i = index">
-		<tr *ngIf="i==0">
+	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: space-around;">
+	<table border="1px" *ngFor="let ability of life.abilities,let i = index">
+		<tr >
 			<th >NAME</th>
 			<th >DESCRIPTION</th>
 			<th >PAG</th>
@@ -235,13 +235,13 @@
 		
 		<tr >
 			<td rowspan="2">
-				<input id="abname{{i}}" type="text" [(ngModel)]="ability.name" placeholder="name" />
+				<input id="abname{{i}}" class="name" type="text" [(ngModel)]="ability.name" placeholder="name" />
 			</td>
 			<td rowspan="2">
 				<textarea id="abdesc{{i}}" class="desc" placeholder="ability description" [(ngModel)]="ability.desc" ></textarea>
 			</td>
 			<td >
-				<input id="abpg{{i}}" class="pg" type="text" [(ngModel)]="ability.pg" placeholder="book + pag" />
+				<input id="abpg{{i}}" class="pg" type="text" [(ngModel)]="ability.pg" placeholder="pag" />
 				
 			</td>
 			
@@ -255,8 +255,8 @@
 	</table>
 	</div>
 	<!--  Magic  -->
-	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: center;">
-	<table border="1px" align="center" *ngFor="let magic of life.magics,let i = index">
+	<div class="divflex;" style="display:flex;flex-wrap: wrap;justify-content: space-around;">
+	<table border="1px" *ngFor="let magic of life.magics,let i = index">
 		<tr *ngIf="i==0">
 			<th >NAME</th>
 			<th >COST</th>
