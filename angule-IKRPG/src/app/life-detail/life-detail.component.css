@@ -66,12 +66,12 @@ button:disabled {
 }
 .top{
 	position: relative;
-    margin-left: -25px;
+    left: -19px;
 }
 .bot{
-	top: 39px;
+	top: 11px;
     position: relative;
-	left: -27px;
+	left: -19px;
 }
 
 .fisdiv{
@@ -213,6 +213,12 @@ table input[type="checkbox"]:checked{
 	display:flex;
     flex-wrap: wrap;
 	justify-content: center;
+}
+.fieldflex{
+	display:flex;
+    flex-wrap: wrap;
+	justify-content: flex-start;
+	flex-flow:column-reverse;
 }
 .rightwep{
 	

@@ -75,10 +75,11 @@
 	<div [class.hugespiral]="life.base == 'huge'" class="fisdiv">
 	
 	<div class="firsts">
-	<input  id="cbf{{i}}" (change)="fisup(i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getFis()" />
+	<input  id="cbf{{i}}" (change)="fisup(0,i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getFis(0)" />
 	</div>
 	<div [class.containerhuge]="life.base == 'huge'" class="container">
-		<input [class.top]="i%2==0" [class.bot]="i%2==1"  id="cbf{{i}}" (change)="fisup(i)" type="checkbox" *ngFor="let i of numerica(2,(life.base === 'huge' ? 24 : 16))" [checked]="i< getFis()" />
+		<input class="top"  id="cbf{{i}}" (change)="fisup(1,i)" type="checkbox" *ngFor="let i of numerica(2,(life.base === 'huge' ? 13 : 9))" [checked]="(i-2)< getFis(1)" />
+		<input class="bot"  id="cbf{{i}}" (change)="fisup(2,i)" type="checkbox" *ngFor="let i of numerica((life.base === 'huge' ? 13 : 9),(life.base === 'huge' ? 24 : 16))" [checked]="(i-(life.base === 'huge' ? 13 : 9))< getFis(2)" />
 	</div>
 	<label class="spirallabel">{{getFis()}}</label>
 	</div>
@@ -87,10 +88,11 @@
 	<div [class.hugespiral]="life.base == 'huge'" class="agidiv">
 	
 	<div class="firsts">
-	<input  id="cba{{i}}" (change)="agiup(i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getAgi()" />
+	<input  id="cba{{i}}" (change)="agiup(0,i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getAgi(0)" />
 	</div>
 	<div [class.containerhuge]="life.base == 'huge'" class="container">
-		<input [class.top]="i%2==0" [class.bot]="i%2==1"  id="cba{{i}}" (change)="agiup(i)" type="checkbox" *ngFor="let i of numerica(2,(life.base === 'huge' ? 24 : 16))" [checked]="i< getAgi()" />
+		<input class="top"  id="cba{{i}}" (change)="agiup(1,i)" type="checkbox" *ngFor="let i of numerica(2,(life.base === 'huge' ? 13 : 9))" [checked]="(i-2)< getAgi(1)" />
+		<input class="bot"  id="cba{{i}}" (change)="agiup(2,i)" type="checkbox" *ngFor="let i of numerica((life.base === 'huge' ? 13 : 9),(life.base === 'huge' ? 24 : 16))" [checked]="(i-(life.base === 'huge' ? 13 : 9))< getAgi(2)" />
 	</div>
 	<label class="spirallabel">{{getAgi()}}</label>
 	</div>
@@ -99,10 +101,11 @@
 	<div [class.hugespiral]="life.base == 'huge'" class="intdiv">
 	
 	<div class="firsts">
-	<input class="btn-primary" id="cbi{{i}}" (change)="intup(i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getInt()" />
+	<input class="btn-primary" id="cbi{{i}}" (change)="intup(0,i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getInt(0)" />
 	</div>
 	<div [class.containerhuge]="life.base == 'huge'" class="container">
-		<input [class.top]="i%2==0" [class.bot]="i%2==1" id="cbi{{i}}" (change)="intup(i)" type="checkbox" *ngFor="let i of numerica(2,(life.base === 'huge' ? 24 : 16))" [checked]="i< getInt()" />
+		<input class="top" id="cbi{{i}}" (change)="intup(1,i)" type="checkbox" *ngFor="let i of numerica(2,(life.base === 'huge' ? 13 : 9))" [checked]="(i-2)< getInt(1)" />
+		<input class="bot" id="cbi{{i}}" (change)="intup(2,i)" type="checkbox" *ngFor="let i of numerica((life.base === 'huge' ? 13 : 9),(life.base === 'huge' ? 24 : 16))" [checked]="(i-(life.base === 'huge' ? 13 : 9))< getInt(2)" />
 	</div>
 	<label class="spirallabel">{{getInt()}}</label>
 	</div>
@@ -126,6 +129,12 @@
 			</td>
 		</tr>
 		</table>
+		<div class="fieldflex;" style="display:flex;flex-wrap: wrap;justify-content: flex-start;flex-flow:column-reverse;">
+		<input class="fieldcheck" id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(((life.base === 'huge' || life.base === 'large') ? 6 :  3),((life.base === 'huge' || life.base === 'large') ? 12 :  6))" [checked]="i< getGField()"/>
+		</div>
+		<div class="fieldflex;" style="display:flex;flex-wrap: wrap;justify-content: flex-start;flex-flow:column-reverse;">
+		<input class="fieldcheck" id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,((life.base === 'huge' || life.base === 'large') ? 6 :  3))" [checked]="i< getGField()"/>
+		</div>
 		
 		<!--colossal-->
 		<br>
@@ -142,9 +151,7 @@
 		
 		
 	</div>
-	<div  *ngIf="life.type === 'grid'">
-	<input class="fieldcheck" id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,((life.base === 'huge' || life.base === 'large') ? 12 :  6))" [checked]="i< getGField()"/>
-	</div>
+	
 	<!--  adds  -->
 	<br>
 	<button id="addmeele" (click)="addMeeleWepon()"><label>New Meele Weapon</label></button>

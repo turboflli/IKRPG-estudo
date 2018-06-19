@@ -3,7 +3,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const lifes = [
-     { id: 1, name: 'BoneSwarm', type: 'espiral', value: '10,6,4,0', base:"medium", spd: 5,arm:15, def:13, inc: 13, von: 11, arc:3, cmd:0, thr:9,
+     { id: 1, name: 'BoneSwarm', type: 'espiral', value: '2,4,4,2,2,2,2,1,1,0', base:"medium", spd: 5,arm:15, def:13, inc: 13, von: 11, arc:3, cmd:0, thr:9,
 		melleweapons: [
 		{name:'bone strike', hit:6, pod:4, pf:12, note:'inimigos no alcance não avançam, só viram'}
 		],
@@ -148,14 +148,6 @@ export class InMemoryDataService implements InMemoryDbService {
 		'começando pelo físico',
 		'starting by physical'
 		],for:'cbf0',pos:4},
-		{id:'detailfisup',text:[
-		'clique de cima',
-		'clique on top'
-		],for:'cbf2',pos:4},
-		{id:'detailfisdown',text:[
-		'para baixo',
-		'to bottom'
-		],for:'cbf3',pos:4},
 		{id:'detailagi',text:[
 		'o mesmo para agilidade',
 		'the same for agility'

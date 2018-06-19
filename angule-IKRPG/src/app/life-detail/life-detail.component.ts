@@ -62,13 +62,13 @@ export class LifeDetailComponent implements OnInit {
 		if(this.life.type=='vitalidade'){
 			this.life.value='0';
 		}else if(this.life.type=='espiral'){
-			this.life.value='0,0,0';
+			this.life.value='0,0,0,0,0,0,0,0,0,0';
 		}else{
 			this.life.value='o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;0;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o;o,o,o,o,o,o';
 		}
 	}
 	noMultipleBattleEngine():void{
-		if(this.life.type=='vitalidade' && this.life.type=='huge'){
+		if(this.life.type=='vitalidade' && this.life.base=='huge'){
 			while(this.vitalities.length>1){
 				this.vitalities.pop();
 			}
@@ -119,74 +119,108 @@ export class LifeDetailComponent implements OnInit {
 		if(this.spirals.length<1){
 		
 			let temp=this.life.value.split(',');
+			//fis
 			this.spirals[0]=+temp[0]
 			this.spirals[1]=+temp[1]
 			this.spirals[2]=+temp[2]
+			//agi
 			this.spirals[3]=+temp[3]
+			this.spirals[4]=+temp[4]
+			this.spirals[5]=+temp[5]
+			//int
+			this.spirals[6]=+temp[6]
+			this.spirals[7]=+temp[7]
+			this.spirals[8]=+temp[8]
+			//field
+			this.spirals[9]=+temp[9]
+			
 		
 		}
 	}
-	getFis() : number{
+	getFis(n:number) : number{
 		this.checkSpiral()
-		return this.spirals[0];
+		if(n==undefined){
+			return (this.spirals[0]+this.spirals[1]+this.spirals[2]);
+		}else{
+			return this.spirals[n];
+		}
+		
 	}
-	fisup(i:number): void{
+	fisup(n:number,i:number): void{
 		
 		let cb=  <HTMLInputElement>  document.getElementById("cbf"+i);
 		if(cb.checked){
-			this.spirals[0]++;
+			this.spirals[n]++;
 		}else{
-			this.spirals[0]--;
+			this.spirals[n]--;
 		}
 		
-		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
+		this.saveSpiral();
 	}
-	getAgi() : number{
+	getAgi(n:number) : number{
 		this.checkSpiral()
-		return this.spirals[1];		
+		if(n==undefined){
+			return (this.spirals[3]+this.spirals[4]+this.spirals[5]);
+		}else{
+			return this.spirals[(n+3)];
+		}
 	}
-	agiup(i:number): void{
+	agiup(n:number,i:number): void{
 		
 		let cb=  <HTMLInputElement>  document.getElementById("cba"+i);
 		if(cb.checked){
-			this.spirals[1]++;
+			this.spirals[(n+3)]++;
 		}else{
-			this.spirals[1]--;
+			this.spirals[(n+3)]--;
 		}
 		
-		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
+		this.saveSpiral();
 	}
-	getInt() : number{
+	getInt(n:number) : number{
 		this.checkSpiral()
-		return this.spirals[2];
+		if(n==undefined){
+			return (this.spirals[6]+this.spirals[7]+this.spirals[8]);
+		}else{
+			return this.spirals[(n+6)];
+		}
 	}
-	intup(i:number): void{
+	intup(n:number,i:number): void{
 		
 		let cb=  <HTMLInputElement>  document.getElementById("cbi"+i);
 		if(cb.checked){
-			this.spirals[2]++;
+			this.spirals[(n+6)]++;
 		}else{
-			this.spirals[2]--;
+			this.spirals[(n+6)]--;
 		}
 		
-		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
+		this.saveSpiral();
 	}
 	getField() : number{
 		this.checkSpiral()
-		return this.spirals[3];
+		return this.spirals[9];
 	}
 	fieldup(i:number): void{
 		
 		let cb=  <HTMLInputElement>  document.getElementById("cbd"+i);
 		if(cb.checked){
-			this.spirals[3]++;
+			this.spirals[9]++;
 		}else{
-			this.spirals[3]--;
+			this.spirals[9]--;
 		}
 		
-		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
+		this.saveSpiral();
 	}
-	
+	private saveSpiral():void {
+		this.life.value=this.spirals[0]+","+this.spirals[1]+","+this.spirals[2]+","+this.spirals[3];
+		let novo="";
+		for(let i=0;i<this.spirals.length;i++){
+			novo+=this.spirals[i];
+			if(i<this.spirals.length-1){
+				novo+=",";
+			}
+		}
+		this.life.value=novo;
+	}
 	private checkGrid(): void{
 		if(this.grid.length<1){
 			let temp=this.life.value.split(';');
@@ -222,17 +256,17 @@ export class LifeDetailComponent implements OnInit {
 			position=0;
 		}else{
 			position++;
-		}
-		let lt=this.letras[position]
-		if(this.life.base=='huge'){
-			if(l<6 && lt=='R'){
-				lt="M";
+			if(this.life.base=='huge'){
+			if(l<6 && temp[0]=='o'){
+				position++;
 			}
-			if(l>6 && lt=='L'){
-				lt="M";
+			if(l>6 && temp[0]=='R'){
+				position++;
 			}
 		}
-		this.grid[l][c]=lt;
+		}
+		
+		this.grid[l][c]=this.letras[position];
 		this.savegrid();
 	}
 	private savegrid(): void{
@@ -293,7 +327,7 @@ export class LifeDetailComponent implements OnInit {
 		let l=0;
 		let c=0;
 		if(temp.length==3){
-			l=+temp.substring(0,2);
+			l=+(temp[0]+temp[1]);
 			c=+temp[2];
 		}else{
 			l=+temp[0];
