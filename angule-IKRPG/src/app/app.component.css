@@ -77,3 +77,9 @@ nav a.active {
   background-color: #cccccc00;
   outline: 1px solid slategrey;
 }
+.crdiv {
+	background: #ded9d99c;
+    font-size: 14px;
+    width: 1000px;
+    margin: auto;
+}

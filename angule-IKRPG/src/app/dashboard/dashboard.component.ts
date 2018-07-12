@@ -93,7 +93,11 @@ export class DashboardComponent implements OnInit {
 	  let arearesp=  <HTMLInputElement>  document.getElementById("arearesp");
 	 let importedlifes=JSON.parse(arearesp.value);
 	  for(let i=0;i<importedlifes.length;i++){
-		  this.add(importedlifes[i]);
+		  let newlife=importedlifes[i];
+		  if(this.lifes.length>0){
+			  newlife.id=undefined;
+		  }
+		  this.add(newlife);
 	  }
 	  let dr=document.getElementById("divready");
 	  dr.classList.add('hidden');
