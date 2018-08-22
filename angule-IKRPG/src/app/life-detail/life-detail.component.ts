@@ -19,6 +19,7 @@ export class LifeDetailComponent implements OnInit {
 	private grid = new Array();
 	private letras :String[] = ['x','o','R','L','M','C','A','G','S'];
 	private vitalities:number[]=[];
+	private time :number =0;
 	
 @Input() life: Life;
   constructor( 
@@ -322,6 +323,7 @@ export class LifeDetailComponent implements OnInit {
 		}
 		return (i/2);
 	}
+	
 	callchoice(e){
 		let temp=e.srcElement.id.substring(3).split('');
 		let l=0;
@@ -333,12 +335,26 @@ export class LifeDetailComponent implements OnInit {
 			l=+temp[0];
 			c=+temp[1];
 		}
-		
-		if(e.shiftKey || e.ctrlKey){
-			this.damageButton(l,c);
+		if(e.sourceCapabilities.firesTouchEvents){
+			if(this.grid[l][c].indexOf('.')==-1){//não danificado
+				if(this.grid[l][c]=='x'){
+					this.changeButton(l,c);
+				}else{
+					this.damageButton(l,c);
+				}
+			}else{
+				this.damageButton(l,c);
+				this.changeButton(l,c);
+			}
 		}else{
-			this.changeButton(l,c);
+			if(e.shiftKey || e.ctrlKey || e.which==3){
+				this.damageButton(l,c);
+			}else{
+				this.changeButton(l,c);
+			}
 		}
+		
+	
 	}
 	addMeeleWepon(): void{
 		let mw=new MeeleWeapon();

@@ -125,7 +125,7 @@
 		</tr>
 		<tr *ngFor="let l of numerica(0,6)">
 			<td *ngFor="let letra of getColumn(l),let x = index">
-				<button class="gridcomp gridbuton" id="btn{{l}}{{x}}" [class.damaged]="letra.indexOf('.')!=-1" [class.offgrid]="letra.indexOf('x')!=-1" [class.bodygrid]="letra.indexOf('o')!=-1" (click)="callchoice($event)">{{letra[0]}}</button>
+				<button class="gridcomp gridbuton" id="btn{{l}}{{x}}" [class.damaged]="letra.indexOf('.')!=-1" [class.offgrid]="letra.indexOf('x')!=-1" [class.bodygrid]="letra.indexOf('o')!=-1" (mousedown)="callchoice($event)">{{letra[0]}}</button><!---->
 			</td>
 		</tr>
 		</table>
