@@ -17,10 +17,10 @@ export class IniciativaService {
 
 
 getInics(): Observable<Iniciativa[]> {
-  this.messageService.add('IniciativaService: fetched inics');
+  //this.messageService.add('IniciativaService: fetched inics');
    return this.http.get<Iniciativa[]>(this.inicUrl)
     .pipe(
-   tap(iniciativas => this.log('fetched inics')),
+   //tap(iniciativas => this.log('fetched inics')),
       catchError(this.handleError('getInics', []))
     );
   //return of(LIFES);

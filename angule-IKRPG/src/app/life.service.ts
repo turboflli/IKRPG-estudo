@@ -17,10 +17,10 @@ export class LifeService {
 
 getLifes(): Observable<Life[]> {
 	// TODO: send the message _after_ fetching the lifes
-	this.messageService.add('LifeSevice: fetched lifes');
+	//this.messageService.add('LifeSevice: fetched lifes');
    return this.http.get<Life[]>(this.lifeUrl)
     .pipe(
-	 tap(lifes => this.log('fetched lifes')),
+	 //tap(lifes => this.log('fetched lifes')),
       catchError(this.handleError('getLifes', []))
     );
   //return of(LIFES);
@@ -32,7 +32,7 @@ getLife(id: number): Observable<Life> {//totaly unless
   // TODO: send the message _after_ fetching the life
 const url=`${this.lifeUrl}/${id}`;// will use a cursed fucking id, even if it doesn't exist
   return this.http.get<Life>(url).pipe(
-	tap(_ => this.log(`fetched life cursed id=${id}`)),
+	//tap(_ => this.log(`fetched life cursed id=${id}`)),
 	catchError(this.handleError<Life>(`getLife id=${id}`))
   );
   //this.messageService.add(`LifeService: fetched life name=${name}`);
@@ -49,7 +49,7 @@ updateLife (life: Life): Observable<any> {
 
 addLife (life: Life): Observable<Life> {
 	return this.http.post<Life>(this.lifeUrl, life, this.httpOptions).pipe(
-    tap((life: Life) => this.log(`added life w/ name=${life.name} and cursed id=${life.id}`)),//can't see the cursed id because it doesn't exist
+    tap((life: Life) => this.log(`added life w/ name=${life.name} and id=${life.id}`)),//can't see the cursed id because it doesn't exist
     catchError(this.handleError<Life>('addLife'))
   );
 }
@@ -60,7 +60,7 @@ deleteLife (life: Life | number): Observable<Life> {
   const url = `${this.lifeUrl}/${id}`;
 
   return this.http.delete<Life>(url, this.httpOptions).pipe(
-    tap(_ => this.log(`deleted life cursed id=${id}`)),
+    tap(_ => this.log(`deleted life id=${id}`)),
     catchError(this.handleError<Life>('deleteLife'))
   );
 }

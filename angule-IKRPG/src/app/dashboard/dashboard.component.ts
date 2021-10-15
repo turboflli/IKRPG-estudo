@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   lifes: Life[] = [];
 	inics:Iniciativa[]=[];
 	ordenedinics=new Array();
+	fileselected: File = undefined;
   constructor(private lifeService: LifeService,private iniciativaService: IniciativaService) { }
 
   ngOnInit() {
@@ -51,7 +52,7 @@ export class DashboardComponent implements OnInit {
 	  let filename=namefile.value;
 	let data=JSON.stringify(this.lifes);
 
-        let blob = new Blob([data], {type: 'text/plain'}),
+        let blob = new Blob([data], {type: 'application/json'}),
             e    = document.createEvent('MouseEvents'),
             a    = document.createElement('a')
 // FOR IE:
@@ -65,33 +66,31 @@ export class DashboardComponent implements OnInit {
 
       a.download = filename;
       a.href = window.URL.createObjectURL(blob);
-      a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
+      a.dataset.downloadurl = ['application/json', a.download, a.href].join(':');
       e.initEvent('click', true,false );/*, window,
           0, 0, 0, 0, 0, false, false, false, false, 0, null);*/
       a.dispatchEvent(e);
   }
 }
-/*problema de sincronia*/
-  readtext():void{
-	  let importedfile=  <HTMLInputElement>  document.getElementById("importedfile");
-	let reader = new FileReader();
-	reader.onloadend = function (e) {
-        var target: any = e.target;
-        var data = target.result;
-		let arearesp=  <HTMLInputElement>  document.getElementById("arearesp");
-		arearesp.value=data;
-		
-		let dr=document.getElementById("divready");
-		dr.classList.remove('hidden');
-		
-    };
+
+
+
+  readtext(): void {
+    let importedfile = <HTMLInputElement>document.getElementById("importedfile");
+    let reader = new FileReader();
+
+    reader.onloadend = function (e) {
+      var target: any = e.target;
+      var data = target.result;
+      this.importLifes(data);
+    }.bind(this);
     reader.readAsText(importedfile.files[0]);
-	
-	 
+
+
   }
-  importLifes(): void{
-	  let arearesp=  <HTMLInputElement>  document.getElementById("arearesp");
-	 let importedlifes=JSON.parse(arearesp.value);
+
+  importLifes(data: string): void{
+	 let importedlifes=JSON.parse(data);
 	  for(let i=0;i<importedlifes.length;i++){
 		  let newlife=importedlifes[i];
 		  if(this.lifes.length>0){
@@ -99,9 +98,7 @@ export class DashboardComponent implements OnInit {
 		  }
 		  this.add(newlife);
 	  }
-	  let dr=document.getElementById("divready");
-	  dr.classList.add('hidden');
-		
+	  this.fileselected = undefined;
   }
   private add(l:Life): void{
 	  this.lifeService.addLife(l).subscribe(life => {

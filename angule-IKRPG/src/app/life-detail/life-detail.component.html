@@ -49,31 +49,31 @@
 		</div>
 	</div-->
 	<div  *ngIf="life.type === 'vitalidade'">
-	
+
 	<!--input [(ngModel)]="life.value" placeholder="quantidade" /-->
 	<!--[checked]="i < life.value" não funcionou, logo tive que trapaçear-->
 	<!--  vit  -->
 	<button *ngIf="life.base !== 'huge'" id="addvitbar" (click)="addVitality()"><label>Add new Vitality bar</label></button>
 	<button *ngIf="life.base !== 'huge'" id="removevitbar" (click)="delVitality()"><label>Remove last Vitality bar</label></button>
 	<div *ngFor="let vit of getVitalities(),let i = index">
-	
-	
+
+
 	<div  [class.containervitality]="life.base === 'huge'">
 	<label *ngIf="life.base !== 'huge'" class="vitcheck">{{i+1}}:</label>
 	<input  class="vitcheck" id="cb{{i}}{{c}}" (change)="vitalityup(i,c)" type="checkbox" *ngFor="let c of numerica(0,(life.base === 'huge' ? 40 : 15))" [checked]="c< vit" /><label class="vitcheck">{{vit}}</label>
 	</div>
-	
+
 	</div>
-	
+
 	<!--input  (click)="vitalityup(this.checked)" type="checkbox" *ngFor="let i of numerica(+life.value,15)" /-->
 	</div>
-	
+
 	<div *ngIf="life.type === 'espiral'">
-	
-	
+
+
 	<!--  Fis  -->
-	<div [class.hugespiral]="life.base == 'huge'" class="fisdiv">
-	
+	<div [class.hugespiral]="life.base == 'huge'" class="spiraldiv fisdiv" style="background: #039be573 !important;">
+
 	<div class="firsts">
 	<input  id="cbf{{i}}" (change)="fisup(0,i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getFis(0)" />
 	</div>
@@ -83,10 +83,10 @@
 	</div>
 	<label class="spirallabel">{{getFis()}}</label>
 	</div>
-	
+
 	<!--  Agi  -->
-	<div [class.hugespiral]="life.base == 'huge'" class="agidiv">
-	
+	<div [class.hugespiral]="life.base == 'huge'" class="spiraldiv agidiv" style="background: #e8121273 !important;">
+
 	<div class="firsts">
 	<input  id="cba{{i}}" (change)="agiup(0,i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getAgi(0)" />
 	</div>
@@ -96,10 +96,10 @@
 	</div>
 	<label class="spirallabel">{{getAgi()}}</label>
 	</div>
-	
+
 	<!--  Int  -->
-	<div [class.hugespiral]="life.base == 'huge'" class="intdiv">
-	
+	<div [class.hugespiral]="life.base == 'huge'" class="spiraldiv intdiv" style="background: #12ff1073 !important;">
+
 	<div class="firsts">
 	<input class="btn-primary" id="cbi{{i}}" (change)="intup(0,i)" type="checkbox" *ngFor="let i of numerica(0,2)" [checked]="i< getInt(0)" />
 	</div>
@@ -118,7 +118,7 @@
 	<!--  grid  -->
 	<br>
 	<div class="divgrid" *ngIf="life.type === 'grid'">
-		
+
 		<table   align="center" class="tablegrid" style="background-image: url(assets/grid.png)">
 		<tr class="gridcomp">
 			<th *ngFor="let i of numerica(0,6)"></th>
@@ -135,7 +135,7 @@
 		<div class="fieldflex;" style="display:flex;flex-wrap: wrap;justify-content: flex-start;flex-flow:column-reverse;">
 		<input class="fieldcheck" id="cbgd{{i}}" (change)="Gfieldup(i)" type="checkbox" *ngFor="let i of numerica(0,((life.base === 'huge' || life.base === 'large') ? 6 :  3))" [checked]="i< getGField()"/>
 		</div>
-		
+
 		<!--colossal-->
 		<br>
 		<table *ngIf="life.base === 'huge'" align="center" class="tablegrid" style="background-image: url(assets/grid.png)">
@@ -148,10 +148,10 @@
 			</td>
 		</tr>
 		</table>
-		
-		
+
+
 	</div>
-	
+
 	<!--  adds  -->
 	<br>
 	<button id="addmeele" (click)="addMeeleWepon()"><label>New Meele Weapon</label></button>
@@ -174,7 +174,7 @@
 	<tr>
 		<td>
 		<img src="assets/meele.png" />
-		
+
 		<input id="mllocal{{i}}" class="local" type="text" [(ngModel)]="wep.local" />
 		</td>
 		<td>
@@ -191,7 +191,7 @@
 		<td colspan="4">Note:<input id="mlnt{{i}}" class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
 	</tr>
 	</table>
-	
+
 	</div>
 	<!--  range weapons  -->
 	<!--align="{{wep.local == 'd' ? 'right' : wep.local == 'e' ? 'left' : 'center' }}"-->
@@ -212,7 +212,7 @@
 		RAT:<input id="rghit{{i}}"  type="number" [(ngModel)]="wep.hit" placeholder="rat" />
 		</td>
 		<td>
-		RNG:<input id="rgalc{{i}}" type="number" [(ngModel)]="wep.alc" placeholder="rng" />
+		RNG:<input id="rgalc{{i}}" type="text" [(ngModel)]="wep.alc" placeholder="rng" />
 		</td>
 		<td>
 		ROF:<input id="rgrof{{i}}" type="number" [(ngModel)]="wep.munition" placeholder="rof" />
@@ -223,8 +223,8 @@
 		<td>
 		POW:<input id="rgpod{{i}}" type="number" [(ngModel)]="wep.pod" placeholder="pow" />
 		</td>
-		
-		
+
+
 	</tr>
 	<tr>
 		<td colspan="6">Note:<input id="rgnt{{i}}" class="inputdesc" [(ngModel)]="wep.note" placeholder="note" /></td>
@@ -239,7 +239,7 @@
 			<th >DESCRIPTION</th>
 			<th >PAG</th>
 		</tr>
-		
+
 		<tr >
 			<td rowspan="2">
 				<input id="abname{{i}}" class="name" type="text" [(ngModel)]="ability.name" placeholder="name" />
@@ -249,16 +249,16 @@
 			</td>
 			<td >
 				<input id="abpg{{i}}" class="pg" type="text" [(ngModel)]="ability.pg" placeholder="pag" />
-				
+
 			</td>
-			
+
 		</tr>
 		<tr>
 			<td>
 				<button id="abdel{{i}}" (click)="deleteAbility(ability)">x</button>
 			</td>
 		</tr>
-	
+
 	</table>
 	</div>
 	<!--  Magic  -->
@@ -273,7 +273,7 @@
 			<th >UP</th>
 			<th >OFF</th>
 		</tr>
-		
+
 		<tr >
 			<td >
 				<input id="mgname{{i}}"  type="text" [(ngModel)]="magic.name" placeholder="name" />
@@ -296,7 +296,7 @@
 			<td >
 				<input id="mgoff{{i}}"  type="checkbox" [(ngModel)]="magic.off" />
 			</td>
-			
+
 		</tr>
 		<tr>
 			<td colspan="6">
@@ -304,7 +304,7 @@
 				<button id="mgdel{{i}}" (click)="deleteMagic(magic)">x</button>
 			</td>
 		</tr>
-	
+
 	</table>
 	</div>
 	<br>
@@ -314,7 +314,7 @@
 		add new
 	  </button>
 
-</div> 
+</div>
 
 
 <button (click)="goBack()">go back</button>
